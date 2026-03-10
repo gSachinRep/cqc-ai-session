@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const sessionFlow = [
   {
@@ -486,6 +486,29 @@ function DownloadList({ downloads }) {
   )
 }
 
+function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
+  const [isVisible, setIsVisible] = useState(showPrompts)
+
+  useEffect(() => {
+    setIsVisible(showPrompts)
+  }, [showPrompts])
+
+  return (
+    <div>
+      <div className="prompt-header">
+        <h4>{title}</h4>
+        <div className="prompt-controls">
+          <span className="prompt-state">{isVisible ? 'Visible' : 'Hidden'}</span>
+          <button className="prompt-toggle-btn" type="button" onClick={() => setIsVisible((current) => !current)}>
+            {isVisible ? `Hide ${buttonLabel}` : `Show ${buttonLabel}`}
+          </button>
+        </div>
+      </div>
+      {isVisible ? <pre>{prompt}</pre> : <div className="prompt-placeholder">Prompt hidden</div>}
+    </div>
+  )
+}
+
 function SurfaceCard({ surface, showPrompts }) {
   return (
     <section id={surface.id} className="surface-card">
@@ -513,13 +536,7 @@ function SurfaceCard({ surface, showPrompts }) {
                   ))}
                 </ol>
               </div>
-              <div>
-                <div className="prompt-header">
-                  <h4>Prompt</h4>
-                  <span className="prompt-state">{showPrompts ? 'Visible' : 'Hidden'}</span>
-                </div>
-                {showPrompts ? <pre>{scenario.prompt}</pre> : <div className="prompt-placeholder">Prompt hidden</div>}
-              </div>
+              <PromptPanel title="Prompt" prompt={scenario.prompt} showPrompts={showPrompts} />
             </div>
             <h4>Downloads</h4>
             <DownloadList downloads={scenario.downloads} />
@@ -550,11 +567,12 @@ function VibeCodingCard({ item, showPrompts }) {
           </ol>
         </div>
         <div>
-          <div className="prompt-header">
-            <h4>Starter build prompt</h4>
-            <span className="prompt-state">{showPrompts ? 'Visible' : 'Hidden'}</span>
-          </div>
-          {showPrompts ? <pre>{item.starterPrompt}</pre> : <div className="prompt-placeholder">Prompt hidden</div>}
+          <PromptPanel
+            title="Starter build prompt"
+            prompt={item.starterPrompt}
+            showPrompts={showPrompts}
+            buttonLabel="starter prompt"
+          />
         </div>
       </div>
     </article>
