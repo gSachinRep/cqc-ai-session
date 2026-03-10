@@ -31,6 +31,7 @@ const sessionFlow = [
 const quickNav = [
   { label: 'Index', href: '#index' },
   { label: 'Setup', href: '#setup' },
+  { label: 'Important notes', href: '#important-notes' },
   { label: 'Workbook picks', href: '#workbook-picks' },
   { label: 'Claude core', href: '#claude-core' },
   { label: 'NotebookLM', href: '#notebooklm' },
@@ -39,6 +40,53 @@ const quickNav = [
   { label: 'Claude Excel', href: '#excel' },
   { label: 'Claude PowerPoint', href: '#powerpoint' },
   { label: 'Downloads', href: '#downloads' }
+]
+
+const promptAnatomy = [
+  {
+    label: 'Role',
+    detail: 'Tell Claude who it should act like: strategist, CFO, HRBP, operations lead, or communications advisor.',
+    tone: 'coral'
+  },
+  {
+    label: 'Goal',
+    detail: 'State the task clearly: summarize, critique, draft, compare options, create a plan, or generate a decision note.',
+    tone: 'gold'
+  },
+  {
+    label: 'Context',
+    detail: 'Give the business situation, audience, source material, constraints, and what matters most.',
+    tone: 'mint'
+  },
+  {
+    label: 'Output Format',
+    detail: 'Specify the format you want: bullets, table, email, brief, action plan, FAQ, or board-ready memo.',
+    tone: 'sky'
+  },
+  {
+    label: 'Constraints',
+    detail: 'Set guardrails such as word count, tone, what to avoid, and whether to separate facts from assumptions.',
+    tone: 'violet'
+  }
+]
+
+const modelGuide = [
+  {
+    model: 'Haiku',
+    use: 'Use for speed-first work: quick rewrites, short summaries, simple formatting, classification, and lightweight drafting.'
+  },
+  {
+    model: 'Sonnet',
+    use: 'Use for most day-to-day work: strong general performance for emails, meeting notes, structured analysis, business writing, and practical reasoning.'
+  },
+  {
+    model: 'Opus',
+    use: 'Use for deeper thinking: strategy pressure tests, multi-step synthesis, decision memos, complex trade-offs, and higher-stakes judgment tasks.'
+  },
+  {
+    model: 'NotebookLM',
+    use: 'Use when the answer must stay grounded in a defined source pack, especially for research briefs, board prep, document Q&A, and source-cited analysis.'
+  }
 ]
 
 const setupGuides = [
@@ -98,6 +146,43 @@ const setupGuides = [
       'Create one test notebook and upload a small source file to confirm access.',
       'Make sure browser permissions do not block downloads, audio playback, or file uploads.',
       'Keep one PDF or document ready so you can start the session immediately.'
+    ]
+  },
+  {
+    title: 'Set up Claude for Excel',
+    steps: [
+      {
+        text: 'Navigate to the Claude for Excel guide.',
+        href: 'https://support.claude.com/en/articles/12650343-use-claude-in-excel'
+      },
+      'Click "Get it now" to install the add-in.',
+      'Open the Claude add-in pane inside Excel and sign in with your Claude account.',
+      'Check the add-in settings and confirm it is available in the workbook before the session starts.'
+    ]
+  },
+  {
+    title: 'Set up Claude for PowerPoint',
+    steps: [
+      {
+        text: 'Navigate to the Claude for PowerPoint add-in page.',
+        href: 'https://marketplace.microsoft.com/en-us/product/office/WA200010001?tab=Overview'
+      },
+      'Click "Get it now" to install the add-in.',
+      'Launch the Claude add-in pane inside PowerPoint and sign in with your Claude account.',
+      'Confirm the add-in loads correctly and is ready to use inside a presentation before the session starts.'
+    ]
+  },
+  {
+    title: 'Set up Claude for Web',
+    steps: [
+      {
+        text: 'Navigate to the Claude for Chrome setup page.',
+        href: 'https://claude.com/claude-in-chrome'
+      },
+      'Install the Claude Chrome integration or follow the setup flow shown there.',
+      'Pin the extension to the browser toolbar so it is easy to access during the session.',
+      'Open the extension or web integration settings and sign in with your Claude account.',
+      'Confirm the extension or web add-in is active and available in the browser before the session starts.'
     ]
   }
 ]
@@ -646,8 +731,16 @@ function SetupCard({ item }) {
     <article className="setup-card">
       <h3>{item.title}</h3>
       <ol>
-        {item.steps.map((step) => (
-          <li key={step}>{step}</li>
+        {item.steps.map((step, index) => (
+          <li key={`${item.title}-${index}`}>
+            {typeof step === 'string' ? (
+              step
+            ) : (
+              <a href={step.href} target="_blank" rel="noreferrer">
+                {step.text}
+              </a>
+            )}
+          </li>
         ))}
       </ol>
     </article>
@@ -733,6 +826,51 @@ function App() {
             {setupGuides.map((item) => (
               <SetupCard key={item.title} item={item} />
             ))}
+          </div>
+        </section>
+
+        <section id="important-notes" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Important Notes</p>
+            <h2>Two things participants should keep in front of them</h2>
+            <p className="lead">
+              These two cards help the room work better: how to structure a strong prompt and how to choose the right
+              model for the job.
+            </p>
+          </div>
+          <div className="notes-grid">
+            <article className="note-card prompt-note">
+              <div className="note-card-header">
+                <h3>Anatomy of a Good Prompt in Claude AI</h3>
+                <p>Strong prompts are clear, grounded, and specific about the job to be done.</p>
+              </div>
+              <div className="anatomy-grid">
+                {promptAnatomy.map((item) => (
+                  <div key={item.label} className={`anatomy-chip tone-${item.tone}`}>
+                    <strong>{item.label}</strong>
+                    <span>{item.detail}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="note-callout">
+                Formula: <strong>Role + Goal + Context + Output Format + Constraints</strong>
+              </div>
+            </article>
+
+            <article className="note-card model-note">
+              <div className="note-card-header">
+                <h3>When to use which Models</h3>
+                <p>Match the model to the effort, the risk, and the need for grounded output.</p>
+              </div>
+              <div className="model-list">
+                {modelGuide.map((item) => (
+                  <div key={item.model} className="model-row">
+                    <strong>{item.model}</strong>
+                    <span>{item.use}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
           </div>
         </section>
 
