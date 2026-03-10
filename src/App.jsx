@@ -89,6 +89,24 @@ const modelGuide = [
   }
 ]
 
+const evaluationNotes = [
+  {
+    title: 'LLM as a Judge',
+    detail:
+      'Use one model to review another response against a rubric: clarity, correctness, completeness, risk, tone, and usefulness. This is powerful for first-pass QA, but it should not replace human judgment in high-stakes work.'
+  },
+  {
+    title: 'LLM Council',
+    detail:
+      'Instead of trusting one answer, ask multiple perspectives to critique the same response: strategist, skeptic, legal reviewer, customer, or operator. This surfaces blind spots, conflicting assumptions, and weak reasoning earlier.'
+  },
+  {
+    title: 'Why this matters',
+    detail:
+      'Senior teams get more value from AI when they do not stop at the first output. Evaluation improves trust, reduces overconfidence, and makes AI useful for decisions rather than only drafting.'
+  }
+]
+
 const setupGuides = [
   {
     title: 'Buy Claude Pro',
@@ -832,10 +850,10 @@ function App() {
         <section id="important-notes" className="section">
           <div className="section-heading">
             <p className="eyebrow">Important Notes</p>
-            <h2>Two things participants should keep in front of them</h2>
+            <h2>Couple of Concepts to considered and embibed</h2>
             <p className="lead">
-              These two cards help the room work better: how to structure a strong prompt and how to choose the right
-              model for the job.
+              Keep these concepts visible through the session so participants build better prompting, better judgment,
+              and better model choice habits.
             </p>
           </div>
           <div className="notes-grid">
@@ -869,6 +887,27 @@ function App() {
                     <span>{item.use}</span>
                   </div>
                 ))}
+              </div>
+            </article>
+
+            <article className="note-card eval-note">
+              <div className="note-card-header">
+                <h3>How to Critically Evaluate AI Responses</h3>
+                <p>Do not treat the first answer as the final answer. Use AI to review, challenge, and strengthen itself.</p>
+              </div>
+              <div className="model-list">
+                {evaluationNotes.map((item) => (
+                  <div key={item.title} className="model-row">
+                    <strong>{item.title}</strong>
+                    <span>{item.detail}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="note-callout">
+                Example to observe and apply:{' '}
+                <a href="https://claude.ai/share/83236019-7802-407d-bfd9-16ccdbe26031" target="_blank" rel="noreferrer">
+                  Claude shared evaluation example
+                </a>
               </div>
             </article>
           </div>
