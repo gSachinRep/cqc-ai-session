@@ -28,6 +28,199 @@ const sessionFlow = [
   }
 ]
 
+const quickNav = [
+  { label: 'Index', href: '#index' },
+  { label: 'Workbook picks', href: '#workbook-picks' },
+  { label: 'Claude core', href: '#claude-core' },
+  { label: 'NotebookLM', href: '#notebooklm' },
+  { label: 'Vibe coding', href: '#vibe-coding' },
+  { label: 'Claude Web', href: '#web' },
+  { label: 'Claude Excel', href: '#excel' },
+  { label: 'Claude PowerPoint', href: '#powerpoint' },
+  { label: 'Downloads', href: '#downloads' }
+]
+
+const vibeCodingProblems = [
+  {
+    color: 'orange',
+    title: 'The Meeting Overload Analyzer',
+    brief:
+      "Our teams spend hours in meetings with no visibility into whether they're productive. I want a tool where I can paste a meeting transcript and get a quick summary — decisions made, action items, owners, and a 'was this meeting necessary?' score.",
+    whyItWorks:
+      'Universal pain point. No domain expertise needed. Tests summarization plus structured-output thinking.',
+    buildFocus: ['Transcript input', 'Structured summary output', 'Decision and owner extraction', 'Meeting-value scoring'],
+    starterPrompt:
+      'Build a simple internal tool called Meeting Overload Analyzer. It should accept a pasted meeting transcript and return: summary, decisions made, action items, owners, risks, and a 1-10 score for whether the meeting was necessary. Use a clean, executive-friendly interface.'
+  },
+  {
+    color: 'blue',
+    title: 'The New Joiner Buddy Bot',
+    brief:
+      'Onboarding is inconsistent across our service lines. Build a simple chatbot that answers common Day 1–30 questions for new employees — policies, who to contact, what tools to use — based on information I feed it.',
+    whyItWorks:
+      'HR and operations relevance for every leader. Forces participants to think about knowledge structuring and prompt design for Q&A flows.',
+    buildFocus: ['FAQ knowledge source', 'Chat interface', 'Contact escalation logic', 'Source-grounded answers'],
+    starterPrompt:
+      'Build a lightweight onboarding chatbot for new joiners. It should answer Day 1 to Day 30 questions using company information I provide, suggest who to contact when unsure, and clearly separate confirmed answers from items that need HR or manager confirmation.'
+  },
+  {
+    color: 'green',
+    title: 'The Client Proposal Accelerator',
+    brief:
+      "Our teams waste time formatting the same types of proposals. I want a tool where I enter a client name, industry, and the problem we're solving — and it generates a first-draft proposal outline with sections, suggested messaging, and a few differentiators.",
+    whyItWorks:
+      'Directly relevant to business development and service line heads. High perceived ROI.',
+    buildFocus: ['Simple form inputs', 'Proposal outline generation', 'Messaging suggestions', 'Differentiator prompts'],
+    starterPrompt:
+      'Build a proposal drafting assistant. Inputs: client name, industry, business problem, and service line. Output: a first-draft proposal outline with executive summary, problem statement, approach, timeline, assumptions, and three differentiators.'
+  },
+  {
+    color: 'violet',
+    title: 'The Team Pulse Dashboard',
+    brief:
+      'I want a lightweight weekly check-in tool — team members answer 3 quick questions about workload, blockers, and morale, and I get a simple visual dashboard showing trends across my team over time.',
+    whyItWorks:
+      'Leadership-relevant, data plus UI challenge, and it pushes thinking about form inputs, storage, and visualization.',
+    buildFocus: ['Weekly check-in form', 'Trend storage', 'Simple charts or status cards', 'Leader dashboard summary'],
+    starterPrompt:
+      'Build a weekly team pulse tool. Team members should submit answers on workload, blockers, and morale. Leaders should see trends over time, current hotspots, and a simple dashboard with clear visuals and minimal setup.'
+  },
+  {
+    color: 'red',
+    title: 'The Competitive Intel Snapshot',
+    brief:
+      "Before a client meeting, I want to quickly generate a one-pager on a competitor — what they offer, their likely pricing positioning, and 3 talking points on why we're different — just by entering a company name and our service line.",
+    whyItWorks:
+      'Strategic and exciting for senior leaders. Pushes participants to think about grounding AI outputs with context and constraints.',
+    buildFocus: ['Competitor input form', 'One-page output', 'Differentiation talking points', 'Grounding and disclaimer section'],
+    starterPrompt:
+      'Build a competitor snapshot generator. Inputs: competitor name and our service line. Output: overview of likely offerings, estimated pricing position, risks in relying on incomplete information, and three talking points on how we are different.'
+  }
+]
+
+const workbookSections = [
+  {
+    id: 'claude-core',
+    eyebrow: 'Workbook Pick · Claude',
+    title: 'Claude core workflows for senior leaders',
+    summary:
+      'Adapted from the workbook for fast live use: communication, strategy critique, and post-session execution planning.',
+    scenarios: [
+      {
+        title: 'Strategic Email',
+        outcome: 'Draft a crisp internal message with stronger context, tone control, and optional subject lines.',
+        whenToUse: 'Use for leadership announcements, program launches, operating updates, or change communication.',
+        steps: [
+          'Open Claude and start a fresh conversation.',
+          'Set context first: your role, audience, purpose, tone, and constraints.',
+          'Paste the exercise brief and ask for one primary version, two alternatives, and five subject lines.',
+          'Ask Claude to tighten it further for brevity or to adapt it for a different stakeholder group.'
+        ],
+        prompt:
+          'I am a senior leader. Draft a 150-word internal email to my leadership team announcing a new AI adoption initiative across three departments starting next month. Tone: confident but collaborative. Include two alternative versions and five subject line options.',
+        downloads: [
+          { label: 'Email brief', href: '/downloads/claude-strategic-email-brief.md' }
+        ]
+      },
+      {
+        title: 'Strategy Pressure Test',
+        outcome: 'Use Claude as a skeptic to expose assumptions, stakeholder objections, and second-order risks.',
+        whenToUse: 'Use before strategy reviews, steering committee meetings, launch approvals, or investment discussions.',
+        steps: [
+          'Paste your plan or use the sample initiative brief.',
+          'Ask Claude to behave like a skeptical leadership team reviewing the proposal.',
+          'Request the top three risks, weakest assumption, and the questions each stakeholder would ask.',
+          'Finish by asking for a revised, more resilient version of the plan.'
+        ],
+        prompt:
+          'Challenge this plan like a skeptical executive team. Give me the top three risks, the most likely wrong assumption, the questions a CFO, CHRO, and operations head will ask, and a revised version of the plan that is more defensible.',
+        downloads: [
+          { label: 'Strategy brief', href: '/downloads/claude-strategy-pressure-test.md' }
+        ]
+      },
+      {
+        title: '30-Day AI Sprint Plan',
+        outcome: 'Convert workshop energy into a concrete team rollout plan with weekly focus, ownership, and follow-through.',
+        whenToUse: 'Use right after the session with each function head or leadership team.',
+        steps: [
+          'Describe your role, team, and the type of work your team does.',
+          'Ask Claude for a four-week sprint with one weekly focus, one visible output, and one review checkpoint.',
+          'Request an internal kickoff email and a weekly check-in template.',
+          'Close by asking for common pitfalls and how to prevent low adoption.'
+        ],
+        prompt:
+          'I am a functional leader who just completed an AI immersion session. Build a 30-day AI sprint plan for my team with weekly themes, specific use cases to test, one kickoff email, one weekly review template, and the main adoption pitfalls to watch for.',
+        downloads: [
+          { label: 'Sprint planning brief', href: '/downloads/claude-ai-sprint-context.md' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'notebooklm',
+    eyebrow: 'Workbook Pick · NotebookLM',
+    title: 'NotebookLM workflows for research, board prep, and market synthesis',
+    summary:
+      'These exercises keep leaders grounded in source material and are strong for research-heavy decisions where citation quality matters.',
+    scenarios: [
+      {
+        title: 'Instant Research Brief',
+        outcome: 'Turn a small source pack into an executive briefing with source-backed insights.',
+        whenToUse: 'Use for emerging topic briefings, trend scans, policy research, or leadership prep.',
+        steps: [
+          'Create a new notebook and upload the three source files.',
+          'Ask NotebookLM for five insights with source references and a 300-word executive brief.',
+          'Ask a second question: what is still unclear or unsupported by the sources.',
+          'Optionally generate the audio overview for commute listening.'
+        ],
+        prompt:
+          'Using only these sources, produce a 300-word executive brief with five actionable insights, why each matters, and citations. Then list the open questions the sources do not resolve.',
+        downloads: [
+          { label: 'Industry report excerpt', href: '/downloads/notebooklm-industry-report.md' },
+          { label: 'Analyst note', href: '/downloads/notebooklm-analyst-note.md' },
+          { label: 'Internal strategy note', href: '/downloads/notebooklm-internal-strategy.md' }
+        ]
+      },
+      {
+        title: 'Board Pack Accelerator',
+        outcome: 'Compress source-heavy board material into a briefing note, questions to expect, and a sharper narrative.',
+        whenToUse: 'Use for CEO office, CFO, strategy, and business heads preparing for board or audit committee reviews.',
+        steps: [
+          'Upload the board memo, performance snapshot, and risk note into one notebook.',
+          'Ask NotebookLM for the story the board is likely to care about most.',
+          'Request five board questions, weak spots in the material, and a short pre-read summary.',
+          'Use that output to refine the actual board pack.'
+        ],
+        prompt:
+          'Review these sources as if you were preparing a board pre-read. Summarize the core story, highlight weak spots or unsupported claims, and generate five questions the board is likely to ask.',
+        downloads: [
+          { label: 'Board memo', href: '/downloads/notebooklm-board-memo.md' },
+          { label: 'Performance snapshot', href: '/downloads/notebooklm-board-performance.csv' },
+          { label: 'Risk note', href: '/downloads/notebooklm-board-risk-note.md' }
+        ]
+      },
+      {
+        title: 'Competitive Intelligence',
+        outcome: 'Use a curated source set to compare competitor moves, extract implications, and identify response options.',
+        whenToUse: 'Use for strategy, business development, pricing, product, and transformation teams.',
+        steps: [
+          'Upload the competitor announcements and internal response note.',
+          'Ask NotebookLM to compare the competitors on moves, claims, and likely implications.',
+          'Request a response matrix: ignore, monitor, counter, or match.',
+          'Finish by asking what additional evidence leadership should collect before acting.'
+        ],
+        prompt:
+          'Using these sources only, compare competitor moves, identify the most material implications for our business, and recommend what we should monitor, counter, or ignore.',
+        downloads: [
+          { label: 'Competitor A update', href: '/downloads/notebooklm-competitor-a.md' },
+          { label: 'Competitor B update', href: '/downloads/notebooklm-competitor-b.md' },
+          { label: 'Internal response note', href: '/downloads/notebooklm-competitive-response.md' }
+        ]
+      }
+    ]
+  }
+]
+
 const surfaces = [
   {
     id: 'web',
@@ -223,6 +416,28 @@ const facilitationTips = [
 
 const downloadLibrary = [
   {
+    name: 'Workbook-derived Claude files',
+    files: [
+      '/downloads/claude-strategic-email-brief.md',
+      '/downloads/claude-strategy-pressure-test.md',
+      '/downloads/claude-ai-sprint-context.md'
+    ]
+  },
+  {
+    name: 'Workbook-derived NotebookLM files',
+    files: [
+      '/downloads/notebooklm-industry-report.md',
+      '/downloads/notebooklm-analyst-note.md',
+      '/downloads/notebooklm-internal-strategy.md',
+      '/downloads/notebooklm-board-memo.md',
+      '/downloads/notebooklm-board-performance.csv',
+      '/downloads/notebooklm-board-risk-note.md',
+      '/downloads/notebooklm-competitor-a.md',
+      '/downloads/notebooklm-competitor-b.md',
+      '/downloads/notebooklm-competitive-response.md'
+    ]
+  },
+  {
     name: 'Claude for Web files',
     files: [
       '/downloads/web-market-update.md',
@@ -312,6 +527,34 @@ function SurfaceCard({ surface }) {
   )
 }
 
+function VibeCodingCard({ item }) {
+  return (
+    <article className={`vibe-card vibe-${item.color}`}>
+      <div className="vibe-header">
+        <h3>{item.title}</h3>
+        <p className="vibe-brief">{item.brief}</p>
+      </div>
+      <p className="scenario-meta">
+        <strong>Why it works:</strong> {item.whyItWorks}
+      </p>
+      <div className="scenario-columns">
+        <div>
+          <h4>What participants should think through</h4>
+          <ol>
+            {item.buildFocus.map((focus) => (
+              <li key={focus}>{focus}</li>
+            ))}
+          </ol>
+        </div>
+        <div>
+          <h4>Starter build prompt</h4>
+          <pre>{item.starterPrompt}</pre>
+        </div>
+      </div>
+    </article>
+  )
+}
+
 function App() {
   return (
     <div className="page-shell">
@@ -319,7 +562,7 @@ function App() {
         <div className="hero-copy">
           <p className="eyebrow">Facilitator Tutorial</p>
           <h1>
-            Claude Workshop Kit For <span>Web, Excel, and PowerPoint</span>
+            AI Workshop Kit For <span>Claude and NotebookLM</span>
           </h1>
           <p className="lead">
             A self-contained tutorial for senior leaders across sales, HR, finance, service lines, and executive roles.
@@ -338,7 +581,8 @@ function App() {
           <div className="panel-card">
             <h3>How to use this page</h3>
             <ul>
-              <li>Pick one surface: Web, Excel, or PowerPoint.</li>
+              <li>Start with the workbook picks for Claude or NotebookLM.</li>
+              <li>Use the quick index to jump to Web, Excel, or PowerPoint as needed.</li>
               <li>Download the case files before the session starts.</li>
               <li>Run the first prompt as written, then ask the room to improve it.</li>
               <li>End every lab with one pilot idea and one guardrail.</li>
@@ -355,6 +599,20 @@ function App() {
       </header>
 
       <main>
+        <section id="index" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Quick Index</p>
+            <h2>Jump straight to the part you need</h2>
+          </div>
+          <div className="surface-nav quick-nav">
+            {quickNav.map((item) => (
+              <a key={item.href} className="surface-link" href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </section>
+
         <section className="section">
           <div className="section-heading">
             <p className="eyebrow">Run Of Show</p>
@@ -367,6 +625,39 @@ function App() {
                 <h3>{item.title}</h3>
                 <p>{item.detail}</p>
               </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="workbook-picks" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Workbook Picks</p>
+            <h2>Selected use cases from the session workbook</h2>
+            <p className="lead">
+              These are adapted from the workbook you shared and converted into facilitator-ready labs with sample files
+              and clearer handoff steps.
+            </p>
+          </div>
+          <div className="surface-stack">
+            {workbookSections.map((surface) => (
+              <SurfaceCard key={surface.id} surface={surface} />
+            ))}
+          </div>
+        </section>
+
+        <section id="vibe-coding" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Vibe Coding</p>
+            <h2>Build-first problems for participants</h2>
+            <p className="lead">
+              Use these as live build challenges in tools like Claude, Bolt, v0, or any AI-assisted app builder. They
+              work well for mixed senior audiences because the problems are familiar, but the outputs require product
+              thinking rather than just prompting.
+            </p>
+          </div>
+          <div className="scenario-list">
+            {vibeCodingProblems.map((item) => (
+              <VibeCodingCard key={item.title} item={item} />
             ))}
           </div>
         </section>

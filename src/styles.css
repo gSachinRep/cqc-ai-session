@@ -213,6 +213,17 @@ main {
   margin-bottom: 20px;
 }
 
+.quick-nav {
+  position: sticky;
+  top: 14px;
+  z-index: 5;
+  padding: 14px;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 253, 247, 0.94);
+  backdrop-filter: blur(8px);
+}
+
 .surface-link {
   padding: 10px 14px;
   border: 2px solid var(--line);
@@ -246,6 +257,45 @@ main {
 .scenario-card {
   padding: 18px;
   background: #fffdf8;
+}
+
+.vibe-card {
+  padding: 20px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: #fffdf8;
+}
+
+.vibe-header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.vibe-brief {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.vibe-orange {
+  background: linear-gradient(180deg, #fff7ef, #fff1e3);
+}
+
+.vibe-blue {
+  background: linear-gradient(180deg, #f1f8ff, #e7f2ff);
+}
+
+.vibe-green {
+  background: linear-gradient(180deg, #f3fff5, #e7f8ea);
+}
+
+.vibe-violet {
+  background: linear-gradient(180deg, #f8f1ff, #f2e7ff);
+}
+
+.vibe-red {
+  background: linear-gradient(180deg, #fff2f1, #ffe7e4);
 }
 
 .scenario-card h3 {
