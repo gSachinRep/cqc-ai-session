@@ -233,6 +233,23 @@ main {
   font-weight: 800;
 }
 
+.index-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.toggle-btn {
+  cursor: pointer;
+}
+
+.toolbar-note {
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .surface-stack {
   display: grid;
   gap: 20px;
@@ -300,6 +317,32 @@ main {
 
 .scenario-card h3 {
   margin-bottom: 12px;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.prompt-state {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.prompt-placeholder {
+  margin: 10px 0 0;
+  padding: 16px;
+  border: 2px dashed var(--line);
+  border-radius: 18px;
+  background: #fff8ee;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center;
 }
 
 .scenario-meta + .scenario-meta {
@@ -384,6 +427,11 @@ pre {
   .tips-grid,
   .library-grid {
     grid-template-columns: 1fr;
+  }
+
+  .index-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

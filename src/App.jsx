@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const sessionFlow = [
   {
@@ -486,7 +486,7 @@ function DownloadList({ downloads }) {
   )
 }
 
-function SurfaceCard({ surface }) {
+function SurfaceCard({ surface, showPrompts }) {
   return (
     <section id={surface.id} className="surface-card">
       <div className="surface-header">
@@ -514,8 +514,11 @@ function SurfaceCard({ surface }) {
                 </ol>
               </div>
               <div>
-                <h4>Prompt</h4>
-                <pre>{scenario.prompt}</pre>
+                <div className="prompt-header">
+                  <h4>Prompt</h4>
+                  <span className="prompt-state">{showPrompts ? 'Visible' : 'Hidden'}</span>
+                </div>
+                {showPrompts ? <pre>{scenario.prompt}</pre> : <div className="prompt-placeholder">Prompt hidden</div>}
               </div>
             </div>
             <h4>Downloads</h4>
@@ -527,7 +530,7 @@ function SurfaceCard({ surface }) {
   )
 }
 
-function VibeCodingCard({ item }) {
+function VibeCodingCard({ item, showPrompts }) {
   return (
     <article className={`vibe-card vibe-${item.color}`}>
       <div className="vibe-header">
@@ -547,8 +550,11 @@ function VibeCodingCard({ item }) {
           </ol>
         </div>
         <div>
-          <h4>Starter build prompt</h4>
-          <pre>{item.starterPrompt}</pre>
+          <div className="prompt-header">
+            <h4>Starter build prompt</h4>
+            <span className="prompt-state">{showPrompts ? 'Visible' : 'Hidden'}</span>
+          </div>
+          {showPrompts ? <pre>{item.starterPrompt}</pre> : <div className="prompt-placeholder">Prompt hidden</div>}
         </div>
       </div>
     </article>
@@ -556,6 +562,8 @@ function VibeCodingCard({ item }) {
 }
 
 function App() {
+  const [showPrompts, setShowPrompts] = useState(true)
+
   return (
     <div className="page-shell">
       <header className="hero">
@@ -604,6 +612,12 @@ function App() {
             <p className="eyebrow">Quick Index</p>
             <h2>Jump straight to the part you need</h2>
           </div>
+          <div className="index-toolbar">
+            <button className="btn toggle-btn" type="button" onClick={() => setShowPrompts((current) => !current)}>
+              {showPrompts ? 'Hide all prompts' : 'Show all prompts'}
+            </button>
+            <p className="toolbar-note">Applies to every prompt block across Claude, NotebookLM, and Vibe Coding.</p>
+          </div>
           <div className="surface-nav quick-nav">
             {quickNav.map((item) => (
               <a key={item.href} className="surface-link" href={item.href}>
@@ -640,7 +654,7 @@ function App() {
           </div>
           <div className="surface-stack">
             {workbookSections.map((surface) => (
-              <SurfaceCard key={surface.id} surface={surface} />
+              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
             ))}
           </div>
         </section>
@@ -657,7 +671,7 @@ function App() {
           </div>
           <div className="scenario-list">
             {vibeCodingProblems.map((item) => (
-              <VibeCodingCard key={item.title} item={item} />
+              <VibeCodingCard key={item.title} item={item} showPrompts={showPrompts} />
             ))}
           </div>
         </section>
@@ -680,7 +694,7 @@ function App() {
           </div>
           <div className="surface-stack">
             {surfaces.map((surface) => (
-              <SurfaceCard key={surface.id} surface={surface} />
+              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
             ))}
           </div>
         </section>
