@@ -1,0 +1,11 @@
+employee_id,function,location,tenure_months,manager_span,performance_band,engagement_score,compa_ratio,attrition_risk
+E101,Sales,Bengaluru,14,9,Strong,68,0.93,Medium
+E102,Sales,Gurugram,9,11,Core,54,0.88,High
+E103,Finance,Mumbai,37,6,Strong,77,0.97,Low
+E104,HR,Hyderabad,22,8,Core,61,0.91,Medium
+E105,Delivery,Pune,11,13,Strong,49,0.86,High
+E106,Delivery,Chennai,18,12,Core,57,0.89,High
+E107,Ops,Bengaluru,31,7,Strong,75,1.01,Low
+E108,Sales,Mumbai,16,10,Core,58,0.9,Medium
+E109,Delivery,Gurugram,8,14,Core,46,0.84,High
+E110,Finance,Hyderabad,29,5,Strong,80,1.03,Low

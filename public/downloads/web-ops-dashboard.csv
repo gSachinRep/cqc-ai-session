@@ -1,0 +1,6 @@
+metric,current_month,previous_month,target,commentary
+SLA breaches,14,6,5,Sharp increase from two large accounts
+Average turnaround time hours,31,22,18,Delay concentrated in custom requests
+Adoption rate percentage,64,68,75,Down in one business unit
+Escalations,8,3,2,Four escalations tied to onboarding delays
+Weekly governance attendance percentage,71,84,95,Leadership participation inconsistent

@@ -1,0 +1,11 @@
+opportunity_id,region,segment,owner,stage,pipeline_value_inr_lakh,days_in_stage,forecast_quarter,deal_risk
+OP-101,North,Enterprise,Asha,Proposal,95,28,Q2,Medium
+OP-102,West,Mid-Market,Rohan,Discovery,34,41,Q2,High
+OP-103,South,Enterprise,Kiran,Negotiation,120,16,Q2,Low
+OP-104,East,SMB,Dev,Proposal,18,52,Q2,High
+OP-105,North,Mid-Market,Asha,Demo,26,33,Q2,Medium
+OP-106,West,Enterprise,Rohan,Negotiation,88,44,Q2,High
+OP-107,South,Enterprise,Kiran,Proposal,76,19,Q2,Medium
+OP-108,East,Mid-Market,Dev,Discovery,22,48,Q2,High
+OP-109,North,Enterprise,Asha,Negotiation,110,12,Q2,Low
+OP-110,West,SMB,Rohan,Proposal,14,39,Q2,Medium
