@@ -580,7 +580,7 @@ function VibeCodingCard({ item, showPrompts }) {
 }
 
 function App() {
-  const [showPrompts, setShowPrompts] = useState(true)
+  const [showPrompts, setShowPrompts] = useState(false)
 
   return (
     <div className="page-shell">
