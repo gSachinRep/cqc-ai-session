@@ -30,6 +30,7 @@ const sessionFlow = [
 
 const quickNav = [
   { label: 'Index', href: '#index' },
+  { label: 'Setup', href: '#setup' },
   { label: 'Workbook picks', href: '#workbook-picks' },
   { label: 'Claude core', href: '#claude-core' },
   { label: 'NotebookLM', href: '#notebooklm' },
@@ -38,6 +39,67 @@ const quickNav = [
   { label: 'Claude Excel', href: '#excel' },
   { label: 'Claude PowerPoint', href: '#powerpoint' },
   { label: 'Downloads', href: '#downloads' }
+]
+
+const setupGuides = [
+  {
+    title: 'Buy Claude Pro',
+    steps: [
+      'Go to claude.ai and sign in with the account you will use during the session.',
+      'Open your account or plan settings and choose the Pro plan.',
+      'Complete payment and confirm the plan is active before the session day.',
+      'Test that you can start a new chat and access the expected Pro features from your account.'
+    ]
+  },
+  {
+    title: 'Sign up for Lovable.dev',
+    steps: [
+      'Go to lovable.dev and create an account before the session.',
+      'Use the email account you plan to keep for workshop experiments and follow-up builds.',
+      'Complete any email verification or sign-in step so you do not lose time during the session.',
+      'Open the workspace once and confirm you can start a new Vibe Coding project.'
+    ]
+  },
+  {
+    title: 'Set up Claude Desktop on Mac',
+    steps: [
+      'Download and install Claude Desktop for macOS from Anthropic.',
+      'Sign in with the same Claude account that has the Pro plan.',
+      'Open Settings and go to Privacy or Data Controls.',
+      'Turn off the option that allows your chats or data to be used for product improvement or sharing.',
+      'Start one test conversation to confirm the app is working before the session.'
+    ]
+  },
+  {
+    title: 'Set up Claude Desktop on Windows',
+    steps: [
+      'Download and install Claude Desktop for Windows from Anthropic.',
+      'Sign in with the same Claude account that has the Pro plan.',
+      'Open Settings and find Privacy or Data Controls.',
+      'Disable any option that allows chat data to be shared for model training, product improvement, or feedback use.',
+      'Run a short test prompt so you know the desktop app is ready for the session.'
+    ]
+  },
+  {
+    title: 'Set up NotebookLM on Mac',
+    steps: [
+      'Open notebooklm.google.com in Chrome or your preferred browser.',
+      'Sign in with the Google account you will use during the workshop.',
+      'Create one test notebook and upload a small source file so you know uploads work.',
+      'Check that pop-ups, downloads, and audio playback are not blocked on your machine.',
+      'Keep one PDF or document ready to upload during the session.'
+    ]
+  },
+  {
+    title: 'Set up NotebookLM on Windows',
+    steps: [
+      'Open notebooklm.google.com in Chrome or Edge.',
+      'Sign in with the Google account you will use during the workshop.',
+      'Create one test notebook and upload a small source file to confirm access.',
+      'Make sure browser permissions do not block downloads, audio playback, or file uploads.',
+      'Keep one PDF or document ready so you can start the session immediately.'
+    ]
+  }
 ]
 
 const vibeCodingProblems = [
@@ -119,7 +181,7 @@ const workbookSections = [
         prompt:
           'I am a senior leader. Draft a 150-word internal email to my leadership team announcing a new AI adoption initiative across three departments starting next month. Tone: confident but collaborative. Include two alternative versions and five subject line options.',
         downloads: [
-          { label: 'Email brief', href: '/downloads/claude-strategic-email-brief.md' }
+          { label: 'Email brief', href: '/downloads/claude-strategic-email-brief.txt' }
         ]
       },
       {
@@ -135,7 +197,7 @@ const workbookSections = [
         prompt:
           'Challenge this plan like a skeptical executive team. Give me the top three risks, the most likely wrong assumption, the questions a CFO, CHRO, and operations head will ask, and a revised version of the plan that is more defensible.',
         downloads: [
-          { label: 'Strategy brief', href: '/downloads/claude-strategy-pressure-test.md' }
+          { label: 'Strategy brief', href: '/downloads/claude-strategy-pressure-test.txt' }
         ]
       },
       {
@@ -151,7 +213,7 @@ const workbookSections = [
         prompt:
           'I am a functional leader who just completed an AI immersion session. Build a 30-day AI sprint plan for my team with weekly themes, specific use cases to test, one kickoff email, one weekly review template, and the main adoption pitfalls to watch for.',
         downloads: [
-          { label: 'Sprint planning brief', href: '/downloads/claude-ai-sprint-context.md' }
+          { label: 'Sprint planning brief', href: '/downloads/claude-ai-sprint-context.txt' }
         ]
       }
     ]
@@ -176,9 +238,9 @@ const workbookSections = [
         prompt:
           'Using only these sources, produce a 300-word executive brief with five actionable insights, why each matters, and citations. Then list the open questions the sources do not resolve.',
         downloads: [
-          { label: 'Industry report excerpt', href: '/downloads/notebooklm-industry-report.md' },
-          { label: 'Analyst note', href: '/downloads/notebooklm-analyst-note.md' },
-          { label: 'Internal strategy note', href: '/downloads/notebooklm-internal-strategy.md' }
+          { label: 'Industry report excerpt', href: '/downloads/notebooklm-industry-report.txt' },
+          { label: 'Analyst note', href: '/downloads/notebooklm-analyst-note.txt' },
+          { label: 'Internal strategy note', href: '/downloads/notebooklm-internal-strategy.txt' }
         ]
       },
       {
@@ -194,9 +256,9 @@ const workbookSections = [
         prompt:
           'Review these sources as if you were preparing a board pre-read. Summarize the core story, highlight weak spots or unsupported claims, and generate five questions the board is likely to ask.',
         downloads: [
-          { label: 'Board memo', href: '/downloads/notebooklm-board-memo.md' },
+          { label: 'Board memo', href: '/downloads/notebooklm-board-memo.txt' },
           { label: 'Performance snapshot', href: '/downloads/notebooklm-board-performance.csv' },
-          { label: 'Risk note', href: '/downloads/notebooklm-board-risk-note.md' }
+          { label: 'Risk note', href: '/downloads/notebooklm-board-risk-note.txt' }
         ]
       },
       {
@@ -212,9 +274,9 @@ const workbookSections = [
         prompt:
           'Using these sources only, compare competitor moves, identify the most material implications for our business, and recommend what we should monitor, counter, or ignore.',
         downloads: [
-          { label: 'Competitor A update', href: '/downloads/notebooklm-competitor-a.md' },
-          { label: 'Competitor B update', href: '/downloads/notebooklm-competitor-b.md' },
-          { label: 'Internal response note', href: '/downloads/notebooklm-competitive-response.md' }
+          { label: 'Competitor A update', href: '/downloads/notebooklm-competitor-a.txt' },
+          { label: 'Competitor B update', href: '/downloads/notebooklm-competitor-b.txt' },
+          { label: 'Internal response note', href: '/downloads/notebooklm-competitive-response.txt' }
         ]
       }
     ]
@@ -242,10 +304,10 @@ const surfaces = [
         prompt:
           'Using the information across these open pages, create a one-page leadership brief with confirmed facts, likely implications, top risks, and the next three actions. Separate evidence from inference.',
         downloads: [
-          { label: 'Market update', href: '/downloads/web-market-update.md' },
-          { label: 'Customer escalation', href: '/downloads/web-customer-escalation.md' },
+          { label: 'Market update', href: '/downloads/web-market-update.txt' },
+          { label: 'Customer escalation', href: '/downloads/web-customer-escalation.txt' },
           { label: 'Ops dashboard snapshot', href: '/downloads/web-ops-dashboard.csv' },
-          { label: 'Facilitator guide', href: '/downloads/web-scenario-brief.md' }
+          { label: 'Facilitator guide', href: '/downloads/web-scenario-brief.txt' }
         ]
       },
       {
@@ -261,8 +323,8 @@ const surfaces = [
         prompt:
           'Review these documents together. Extract obligations, deadlines, commercial risks, unclear clauses, and items that require legal or leadership escalation. Finish with a negotiation checklist.',
         downloads: [
-          { label: 'Policy note', href: '/downloads/web-policy-change.md' },
-          { label: 'Contract summary', href: '/downloads/web-contract-summary.md' }
+          { label: 'Policy note', href: '/downloads/web-policy-change.txt' },
+          { label: 'Contract summary', href: '/downloads/web-contract-summary.txt' }
         ]
       },
       {
@@ -278,7 +340,7 @@ const surfaces = [
         prompt:
           'Create a meeting-prep pack from these materials. Include account context, stakeholder priorities, risk signals, opportunity areas, recommended talking points, and likely objections.',
         downloads: [
-          { label: 'Account background', href: '/downloads/web-account-background.md' },
+          { label: 'Account background', href: '/downloads/web-account-background.txt' },
           { label: 'Quarterly account metrics', href: '/downloads/web-account-metrics.csv' }
         ]
       }
@@ -305,7 +367,7 @@ const surfaces = [
           'Review this workbook as a CFO-style analyst. Identify the five most important movements, their likely drivers, possible risks, and the questions leadership should ask before acting.',
         downloads: [
           { label: 'Finance variance data', href: '/downloads/excel-finance-variance.csv' },
-          { label: 'Cost driver notes', href: '/downloads/excel-finance-notes.md' }
+          { label: 'Cost driver notes', href: '/downloads/excel-finance-notes.txt' }
         ]
       },
       {
@@ -322,7 +384,7 @@ const surfaces = [
           'Analyze this pipeline sheet and identify the main causes of revenue slippage, conversion leakage, and deal ageing. Recommend actions by team, region, and deal stage.',
         downloads: [
           { label: 'Pipeline data', href: '/downloads/excel-sales-pipeline.csv' },
-          { label: 'Win-loss notes', href: '/downloads/excel-win-loss-notes.md' }
+          { label: 'Win-loss notes', href: '/downloads/excel-win-loss-notes.txt' }
         ]
       },
       {
@@ -339,7 +401,7 @@ const surfaces = [
           'Review this workforce data and identify attrition hotspots, potential drivers, and the top interventions for the next quarter. Separate systemic issues from manager-level issues.',
         downloads: [
           { label: 'Workforce data', href: '/downloads/excel-workforce-attrition.csv' },
-          { label: 'Manager notes', href: '/downloads/excel-workforce-notes.md' }
+          { label: 'Manager notes', href: '/downloads/excel-workforce-notes.txt' }
         ]
       }
     ]
@@ -364,7 +426,7 @@ const surfaces = [
         prompt:
           'Act as an executive communications advisor. Convert these raw notes into a six-slide board storyline with slide titles, key message per slide, supporting evidence, and likely questions from the board.',
         downloads: [
-          { label: 'Board notes', href: '/downloads/ppt-board-notes.md' },
+          { label: 'Board notes', href: '/downloads/ppt-board-notes.txt' },
           { label: 'Board metrics', href: '/downloads/ppt-board-metrics.csv' }
         ]
       },
@@ -381,8 +443,8 @@ const surfaces = [
         prompt:
           'Review these presentation notes and improve the storyline, differentiation, credibility, and executive tone. Identify what should be cut, what needs proof, and what the client is likely to challenge.',
         downloads: [
-          { label: 'Pitch notes', href: '/downloads/ppt-client-pitch-notes.md' },
-          { label: 'Case studies', href: '/downloads/ppt-client-case-studies.md' }
+          { label: 'Pitch notes', href: '/downloads/ppt-client-pitch-notes.txt' },
+          { label: 'Case studies', href: '/downloads/ppt-client-case-studies.txt' }
         ]
       },
       {
@@ -398,8 +460,8 @@ const surfaces = [
         prompt:
           'Turn these change-management notes into a clear leadership deck outline. Balance rationale, empathy, operating implications, and next steps. Include likely employee questions and manager guidance.',
         downloads: [
-          { label: 'Change brief', href: '/downloads/ppt-change-brief.md' },
-          { label: 'Employee FAQ inputs', href: '/downloads/ppt-change-faq.md' }
+          { label: 'Change brief', href: '/downloads/ppt-change-brief.txt' },
+          { label: 'Employee FAQ inputs', href: '/downloads/ppt-change-faq.txt' }
         ]
       }
     ]
@@ -418,35 +480,35 @@ const downloadLibrary = [
   {
     name: 'Workbook-derived Claude files',
     files: [
-      '/downloads/claude-strategic-email-brief.md',
-      '/downloads/claude-strategy-pressure-test.md',
-      '/downloads/claude-ai-sprint-context.md'
+      '/downloads/claude-strategic-email-brief.txt',
+      '/downloads/claude-strategy-pressure-test.txt',
+      '/downloads/claude-ai-sprint-context.txt'
     ]
   },
   {
     name: 'Workbook-derived NotebookLM files',
     files: [
-      '/downloads/notebooklm-industry-report.md',
-      '/downloads/notebooklm-analyst-note.md',
-      '/downloads/notebooklm-internal-strategy.md',
-      '/downloads/notebooklm-board-memo.md',
+      '/downloads/notebooklm-industry-report.txt',
+      '/downloads/notebooklm-analyst-note.txt',
+      '/downloads/notebooklm-internal-strategy.txt',
+      '/downloads/notebooklm-board-memo.txt',
       '/downloads/notebooklm-board-performance.csv',
-      '/downloads/notebooklm-board-risk-note.md',
-      '/downloads/notebooklm-competitor-a.md',
-      '/downloads/notebooklm-competitor-b.md',
-      '/downloads/notebooklm-competitive-response.md'
+      '/downloads/notebooklm-board-risk-note.txt',
+      '/downloads/notebooklm-competitor-a.txt',
+      '/downloads/notebooklm-competitor-b.txt',
+      '/downloads/notebooklm-competitive-response.txt'
     ]
   },
   {
     name: 'Claude for Web files',
     files: [
-      '/downloads/web-market-update.md',
-      '/downloads/web-customer-escalation.md',
+      '/downloads/web-market-update.txt',
+      '/downloads/web-customer-escalation.txt',
       '/downloads/web-ops-dashboard.csv',
-      '/downloads/web-scenario-brief.md',
-      '/downloads/web-policy-change.md',
-      '/downloads/web-contract-summary.md',
-      '/downloads/web-account-background.md',
+      '/downloads/web-scenario-brief.txt',
+      '/downloads/web-policy-change.txt',
+      '/downloads/web-contract-summary.txt',
+      '/downloads/web-account-background.txt',
       '/downloads/web-account-metrics.csv'
     ]
   },
@@ -454,22 +516,22 @@ const downloadLibrary = [
     name: 'Claude for Excel files',
     files: [
       '/downloads/excel-finance-variance.csv',
-      '/downloads/excel-finance-notes.md',
+      '/downloads/excel-finance-notes.txt',
       '/downloads/excel-sales-pipeline.csv',
-      '/downloads/excel-win-loss-notes.md',
+      '/downloads/excel-win-loss-notes.txt',
       '/downloads/excel-workforce-attrition.csv',
-      '/downloads/excel-workforce-notes.md'
+      '/downloads/excel-workforce-notes.txt'
     ]
   },
   {
     name: 'Claude for PowerPoint files',
     files: [
-      '/downloads/ppt-board-notes.md',
+      '/downloads/ppt-board-notes.txt',
       '/downloads/ppt-board-metrics.csv',
-      '/downloads/ppt-client-pitch-notes.md',
-      '/downloads/ppt-client-case-studies.md',
-      '/downloads/ppt-change-brief.md',
-      '/downloads/ppt-change-faq.md'
+      '/downloads/ppt-client-pitch-notes.txt',
+      '/downloads/ppt-client-case-studies.txt',
+      '/downloads/ppt-change-brief.txt',
+      '/downloads/ppt-change-faq.txt'
     ]
   }
 ]
@@ -579,6 +641,19 @@ function VibeCodingCard({ item, showPrompts }) {
   )
 }
 
+function SetupCard({ item }) {
+  return (
+    <article className="setup-card">
+      <h3>{item.title}</h3>
+      <ol>
+        {item.steps.map((step) => (
+          <li key={step}>{step}</li>
+        ))}
+      </ol>
+    </article>
+  )
+}
+
 function App() {
   const [showPrompts, setShowPrompts] = useState(false)
 
@@ -641,6 +716,22 @@ function App() {
               <a key={item.href} className="surface-link" href={item.href}>
                 {item.label}
               </a>
+            ))}
+          </div>
+        </section>
+
+        <section id="setup" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Setup</p>
+            <h2>Prepare Claude Pro, Claude Desktop, and NotebookLM</h2>
+            <p className="lead">
+              Use this section before the workshop begins. It covers buying Claude Pro, setting Claude Desktop privacy so
+              data is not shared, and preparing NotebookLM on both Mac and Windows machines.
+            </p>
+          </div>
+          <div className="setup-grid">
+            {setupGuides.map((item) => (
+              <SetupCard key={item.title} item={item} />
             ))}
           </div>
         </section>
