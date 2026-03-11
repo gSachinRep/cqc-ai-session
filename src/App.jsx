@@ -579,6 +579,87 @@ const facilitationTips = [
   'Close each lab by asking what should remain fully human-owned.'
 ]
 
+const finalExercise = {
+  id: 'project-evaluation',
+  title: 'Evaluate Your Project Thinking',
+  outcome:
+    'Stress-test a team proposal or presentation against leadership expectations, strategic quality, and executive communication standards.',
+  whenToUse:
+    'Use this as the final exercise after teams have drafted their project idea, proposal, or presentation and need a sharper leadership-grade critique.',
+  steps: [
+    'Paste the team proposal, presentation content, or project summary into Claude.',
+    'Use the evaluator prompt to score the work across facts, strategic reasoning, leadership alignment, and executive communication.',
+    'Ask teams to review the reasoning first, not just the score, and identify what is missing in their thinking.',
+    'Revise the project based on the verdict and improvement recommendation, then rerun the evaluation if time permits.'
+  ],
+  prompt: `You are an expert strategy judge evaluating AI transformation proposals and presentations in the context of enterprise AI adoption.
+
+Your role is to rigorously assess whether a given presentation or proposal demonstrates strategic thinking, leadership alignment, and meaningful AI transformation potential, not merely superficial automation ideas.
+
+Context:
+The leadership team expects AI initiatives to start from business problems, reduce operational friction, improve people productivity, challenge legacy operating models, avoid presenting BAU automation as transformation, and show bold but grounded platform-like thinking.
+
+Evaluate the proposal across four dimensions:
+1. Correctness of Facts (0-5)
+2. Depth of Strategic Reasoning (0-5)
+3. Alignment with Leadership AI Transformation Principles (0-5)
+4. Clarity and Executive Communication (0-5)
+
+Weighting:
+- Correctness of Facts: 30%
+- Depth of Strategic Reasoning: 30%
+- Leadership Alignment: 25%
+- Clarity and Communication: 15%
+
+Instructions:
+- Reason step by step before scoring.
+- Do not reward length over insight.
+- Penalize technology-first thinking, vague buzzwords, and incremental BAU automation presented as transformation.
+- Be evidence-driven and justify every score.
+
+Output in this structure:
+
+<evaluation>
+
+<reasoning>
+
+[CRITERION 1 - CORRECTNESS OF FACTS]
+<step-by-step analysis>
+
+[CRITERION 2 - DEPTH OF STRATEGIC REASONING]
+<step-by-step analysis>
+
+[CRITERION 3 - ALIGNMENT WITH LEADERSHIP PRINCIPLES]
+<step-by-step analysis>
+
+[CRITERION 4 - CLARITY AND EXECUTIVE COMMUNICATION]
+<step-by-step analysis>
+
+</reasoning>
+
+<scores>
+
+- Correctness of Facts: X/5
+- Depth of Strategic Reasoning: X/5
+- Leadership Alignment: X/5
+- Clarity and Communication: X/5
+- OVERALL SCORE: X/5
+
+</scores>
+
+<verdict>
+
+Provide a short summary including:
+- strongest aspect
+- biggest weakness
+- one concrete improvement recommendation
+
+</verdict>
+
+</evaluation>`,
+  downloads: [{ label: 'Project evaluation prompt', href: '/downloads/project-evaluation-prompt.txt' }]
+}
+
 const downloadLibrary = [
   {
     name: 'Workbook-derived Claude files',
@@ -636,6 +717,10 @@ const downloadLibrary = [
       '/downloads/ppt-change-brief.txt',
       '/downloads/ppt-change-faq.txt'
     ]
+  },
+  {
+    name: 'Final exercise files',
+    files: ['/downloads/project-evaluation-prompt.txt']
   }
 ]
 
@@ -929,22 +1014,6 @@ function App() {
           </div>
         </section>
 
-        <section id="workbook-picks" className="section">
-          <div className="section-heading">
-            <p className="eyebrow">Workbook Picks</p>
-            <h2>Selected use cases from the session workbook</h2>
-            <p className="lead">
-              These are adapted from the workbook you shared and converted into facilitator-ready labs with sample files
-              and clearer handoff steps.
-            </p>
-          </div>
-          <div className="surface-stack">
-            {workbookSections.map((surface) => (
-              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
-            ))}
-          </div>
-        </section>
-
         <section id="vibe-coding" className="section">
           <div className="section-heading">
             <p className="eyebrow">Vibe Coding</p>
@@ -983,6 +1052,55 @@ function App() {
               <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
             ))}
           </div>
+        </section>
+
+        <section id="workbook-picks" className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Workbook Picks</p>
+            <h2>Selected use cases from the session workbook</h2>
+            <p className="lead">
+              These are adapted from the workbook you shared and converted into facilitator-ready labs with sample files
+              and clearer handoff steps.
+            </p>
+          </div>
+          <div className="surface-stack">
+            {workbookSections.map((surface) => (
+              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
+            ))}
+          </div>
+        </section>
+
+        <section id={finalExercise.id} className="section">
+          <div className="section-heading">
+            <p className="eyebrow">Final Exercise</p>
+            <h2>{finalExercise.title}</h2>
+            <p className="lead">
+              End the session by evaluating whether the project thinking is truly transformative, leadership-aligned,
+              and strategically sound rather than just superficially polished.
+            </p>
+          </div>
+          <article className="scenario-card">
+            <h3>{finalExercise.title}</h3>
+            <p className="scenario-meta">
+              <strong>Outcome:</strong> {finalExercise.outcome}
+            </p>
+            <p className="scenario-meta">
+              <strong>When to use:</strong> {finalExercise.whenToUse}
+            </p>
+            <div className="scenario-columns">
+              <div>
+                <h4>Steps</h4>
+                <ol>
+                  {finalExercise.steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+              <PromptPanel title="Evaluator prompt" prompt={finalExercise.prompt} showPrompts={showPrompts} buttonLabel="evaluator prompt" />
+            </div>
+            <h4>Downloads</h4>
+            <DownloadList downloads={finalExercise.downloads} />
+          </article>
         </section>
 
         <section className="section">
