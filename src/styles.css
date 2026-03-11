@@ -370,6 +370,19 @@ main {
   cursor: pointer;
 }
 
+.prompt-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: #fff4db;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .prompt-placeholder {
   margin: 10px 0 0;
   padding: 16px;

@@ -738,10 +738,32 @@ function DownloadList({ downloads }) {
 
 function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
   const [isVisible, setIsVisible] = useState(showPrompts)
+  const [copyState, setCopyState] = useState('idle')
 
   useEffect(() => {
     setIsVisible(showPrompts)
   }, [showPrompts])
+
+  useEffect(() => {
+    if (copyState === 'idle') {
+      return undefined
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setCopyState('idle')
+    }, 1600)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [copyState])
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(prompt)
+      setCopyState('copied')
+    } catch (error) {
+      setCopyState('failed')
+    }
+  }
 
   return (
     <div>
@@ -749,6 +771,10 @@ function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
         <h4>{title}</h4>
         <div className="prompt-controls">
           <span className="prompt-state">{isVisible ? 'Visible' : 'Hidden'}</span>
+          <button className="prompt-copy-btn" type="button" onClick={handleCopy} aria-label={`Copy ${buttonLabel}`}>
+            <span aria-hidden="true">📋</span>
+            <span>{copyState === 'copied' ? 'Copied' : copyState === 'failed' ? 'Retry' : 'Copy'}</span>
+          </button>
           <button className="prompt-toggle-btn" type="button" onClick={() => setIsVisible((current) => !current)}>
             {isVisible ? `Hide ${buttonLabel}` : `Show ${buttonLabel}`}
           </button>
