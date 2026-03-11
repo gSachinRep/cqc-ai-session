@@ -581,7 +581,7 @@ const facilitationTips = [
 
 const finalExercise = {
   id: 'project-evaluation',
-  title: 'Evaluate Your Project Thinking',
+  title: 'Evaluate Your CQC Project Thinking',
   outcome:
     'Stress-test a team proposal or presentation against leadership expectations, strategic quality, and executive communication standards.',
   whenToUse:
@@ -1135,6 +1135,10 @@ function App() {
           </div>
         </section>
       </main>
+
+      <a className="floating-index" href="#index" aria-label="Back to index">
+        Index
+      </a>
     </div>
   )
 }

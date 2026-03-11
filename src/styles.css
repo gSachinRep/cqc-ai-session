@@ -43,6 +43,26 @@ a {
   padding: 28px 0 48px;
 }
 
+.floating-index {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff7f3;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 rgba(24, 32, 43, 0.95);
+}
+
 .hero,
 .section,
 .surface-card,
@@ -600,5 +620,12 @@ pre {
   .surface-link,
   .download-chip {
     width: 100%;
+  }
+
+  .floating-index {
+    right: 12px;
+    bottom: 12px;
+    min-width: 72px;
+    min-height: 44px;
   }
 }
