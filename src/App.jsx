@@ -39,7 +39,7 @@ const quickNav = [
   { label: 'Workbook picks', href: '#workbook-picks' },
   { label: 'Claude core', href: '#claude-core' },
   { label: 'NotebookLM', href: '#notebooklm' },
-  { label: 'Evaluate the your CQC Project', href: '#project-evaluation' },
+  { label: 'Evaluate Your CQC Project', href: '#project-evaluation' },
   { label: 'Downloads', href: '#downloads' }
 ]
 
@@ -108,7 +108,7 @@ const evaluationNotes = [
   }
 ]
 
-const setupGuides = [
+const requiredSetupGuides = [
   {
     title: 'Buy Claude Pro',
     steps: [
@@ -125,26 +125,6 @@ const setupGuides = [
       'Use the email account you plan to keep for workshop experiments and follow-up builds.',
       'Complete any email verification or sign-in step so you do not lose time during the session.',
       'Open the workspace once and confirm you can start a new Vibe Coding project.'
-    ]
-  },
-  {
-    title: 'Set up Claude Desktop on Mac',
-    steps: [
-      'Download and install Claude Desktop for macOS from Anthropic.',
-      'Sign in with the same Claude account that has the Pro plan.',
-      'Open Settings and go to Privacy or Data Controls.',
-      'Turn off the option that allows your chats or data to be used for product improvement or sharing.',
-      'Start one test conversation to confirm the app is working before the session.'
-    ]
-  },
-  {
-    title: 'Set up Claude Desktop on Windows',
-    steps: [
-      'Download and install Claude Desktop for Windows from Anthropic.',
-      'Sign in with the same Claude account that has the Pro plan.',
-      'Open Settings and find Privacy or Data Controls.',
-      'Disable any option that allows chat data to be shared for model training, product improvement, or feedback use.',
-      'Run a short test prompt so you know the desktop app is ready for the session.'
     ]
   },
   {
@@ -165,6 +145,29 @@ const setupGuides = [
       'Create one test notebook and upload a small source file to confirm access.',
       'Make sure browser permissions do not block downloads, audio playback, or file uploads.',
       'Keep one PDF or document ready so you can start the session immediately.'
+    ]
+  }
+]
+
+const optionalSetupGuides = [
+  {
+    title: 'Set up Claude Desktop on Mac',
+    steps: [
+      'Download and install Claude Desktop for macOS from Anthropic.',
+      'Sign in with the same Claude account that has the Pro plan.',
+      'Open Settings and go to Privacy or Data Controls.',
+      'Turn off the option that allows your chats or data to be used for product improvement or sharing.',
+      'Start one test conversation to confirm the app is working before the session.'
+    ]
+  },
+  {
+    title: 'Set up Claude Desktop on Windows',
+    steps: [
+      'Download and install Claude Desktop for Windows from Anthropic.',
+      'Sign in with the same Claude account that has the Pro plan.',
+      'Open Settings and find Privacy or Data Controls.',
+      'Disable any option that allows chat data to be shared for model training, product improvement, or feedback use.',
+      'Run a short test prompt so you know the desktop app is ready for the session.'
     ]
   },
   {
@@ -961,14 +964,27 @@ function App() {
         <section id="setup" className="section">
           <div className="section-heading">
             <p className="eyebrow">Setup</p>
-            <h2>Prepare Claude Pro, Claude Desktop, and NotebookLM</h2>
+            <h2>Required setup first, optional tool setup next</h2>
             <p className="lead">
-              Use this section before the workshop begins. It covers buying Claude Pro, setting Claude Desktop privacy so
-              data is not shared, and preparing NotebookLM on both Mac and Windows machines.
+              Use this section before the workshop begins. Start with the required account and access setup. Then use
+              the optional tool setup cards only if those tools are part of your session flow.
             </p>
           </div>
+          <div className="section-heading">
+            <h3>Required before the session</h3>
+            <p className="lead">These are the items most participants should complete before joining the workshop.</p>
+          </div>
           <div className="setup-grid">
-            {setupGuides.map((item) => (
+            {requiredSetupGuides.map((item) => (
+              <SetupCard key={item.title} item={item} />
+            ))}
+          </div>
+          <div className="section-heading section-subhead">
+            <h3>Tool Setup</h3>
+            <p className="lead">Use these only if your session includes Claude Desktop or the Claude integrations.</p>
+          </div>
+          <div className="setup-grid">
+            {optionalSetupGuides.map((item) => (
               <SetupCard key={item.title} item={item} />
             ))}
           </div>
@@ -977,7 +993,7 @@ function App() {
         <section id="important-notes" className="section">
           <div className="section-heading">
             <p className="eyebrow">Important Notes</p>
-            <h2>Couple of Concepts to considered and embibed</h2>
+            <h2>Concepts to keep in mind and absorb</h2>
             <p className="lead">
               Keep these concepts visible through the session so participants build better prompting, better judgment,
               and better model choice habits.
