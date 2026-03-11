@@ -32,13 +32,14 @@ const quickNav = [
   { label: 'Index', href: '#index' },
   { label: 'Setup', href: '#setup' },
   { label: 'Important notes', href: '#important-notes' },
-  { label: 'Workbook picks', href: '#workbook-picks' },
-  { label: 'Claude core', href: '#claude-core' },
-  { label: 'NotebookLM', href: '#notebooklm' },
   { label: 'Vibe coding', href: '#vibe-coding' },
   { label: 'Claude Web', href: '#web' },
   { label: 'Claude Excel', href: '#excel' },
   { label: 'Claude PowerPoint', href: '#powerpoint' },
+  { label: 'Workbook picks', href: '#workbook-picks' },
+  { label: 'Claude core', href: '#claude-core' },
+  { label: 'NotebookLM', href: '#notebooklm' },
+  { label: 'Evaluate the your CQC Project', href: '#project-evaluation' },
   { label: 'Downloads', href: '#downloads' }
 ]
 
@@ -736,6 +737,25 @@ function DownloadList({ downloads }) {
   )
 }
 
+function CollapsibleCard({ className = '', title, subtitle, children, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+
+  return (
+    <article className={`${className} collapsible-card ${isOpen ? 'is-open' : 'is-closed'}`.trim()}>
+      <button className="collapse-toggle" type="button" onClick={() => setIsOpen((current) => !current)}>
+        <span className="collapse-copy">
+          <strong>{title}</strong>
+          {subtitle ? <small>{subtitle}</small> : null}
+        </span>
+        <span className="collapse-icon" aria-hidden="true">
+          {isOpen ? '−' : '+'}
+        </span>
+      </button>
+      {isOpen ? <div className="collapse-body">{children}</div> : null}
+    </article>
+  )
+}
+
 function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
   const [isVisible, setIsVisible] = useState(showPrompts)
   const [copyState, setCopyState] = useState('idle')
@@ -768,9 +788,8 @@ function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
   return (
     <div>
       <div className="prompt-header">
-        <h4>{title}</h4>
+        <h4 className="prompt-title">{title}</h4>
         <div className="prompt-controls">
-          <span className="prompt-state">{isVisible ? 'Visible' : 'Hidden'}</span>
           <button className="prompt-copy-btn" type="button" onClick={handleCopy} aria-label={`Copy ${buttonLabel}`}>
             <span aria-hidden="true">📋</span>
             <span>{copyState === 'copied' ? 'Copied' : copyState === 'failed' ? 'Retry' : 'Copy'}</span>
@@ -795,8 +814,7 @@ function SurfaceCard({ surface, showPrompts }) {
       </div>
       <div className="scenario-list">
         {surface.scenarios.map((scenario) => (
-          <article key={scenario.title} className="scenario-card">
-            <h3>{scenario.title}</h3>
+          <CollapsibleCard key={scenario.title} className="scenario-card" title={scenario.title} subtitle={scenario.outcome}>
             <p className="scenario-meta">
               <strong>Outcome:</strong> {scenario.outcome}
             </p>
@@ -812,11 +830,11 @@ function SurfaceCard({ surface, showPrompts }) {
                   ))}
                 </ol>
               </div>
-              <PromptPanel title="Prompt" prompt={scenario.prompt} showPrompts={showPrompts} />
+              <PromptPanel title="" prompt={scenario.prompt} showPrompts={showPrompts} />
             </div>
             <h4>Downloads</h4>
             <DownloadList downloads={scenario.downloads} />
-          </article>
+          </CollapsibleCard>
         ))}
       </div>
     </section>
@@ -825,9 +843,8 @@ function SurfaceCard({ surface, showPrompts }) {
 
 function VibeCodingCard({ item, showPrompts }) {
   return (
-    <article className={`vibe-card vibe-${item.color}`}>
+    <CollapsibleCard className={`vibe-card vibe-${item.color}`} title={item.title} subtitle={item.whyItWorks}>
       <div className="vibe-header">
-        <h3>{item.title}</h3>
         <p className="vibe-brief">{item.brief}</p>
       </div>
       <p className="scenario-meta">
@@ -844,21 +861,20 @@ function VibeCodingCard({ item, showPrompts }) {
         </div>
         <div>
           <PromptPanel
-            title="Starter build prompt"
+            title=""
             prompt={item.starterPrompt}
             showPrompts={showPrompts}
             buttonLabel="starter prompt"
           />
         </div>
       </div>
-    </article>
+    </CollapsibleCard>
   )
 }
 
 function SetupCard({ item }) {
   return (
-    <article className="setup-card">
-      <h3>{item.title}</h3>
+    <CollapsibleCard className="setup-card" title={item.title}>
       <ol>
         {item.steps.map((step, index) => (
           <li key={`${item.title}-${index}`}>
@@ -872,7 +888,7 @@ function SetupCard({ item }) {
           </li>
         ))}
       </ol>
-    </article>
+    </CollapsibleCard>
   )
 }
 
@@ -902,20 +918,20 @@ function App() {
         </div>
         <aside className="hero-panel">
           <div className="panel-card">
-            <h3>How to use this page</h3>
+            <h3>How to use the tutorial</h3>
             <ul>
-              <li>Start with the workbook picks for Claude or NotebookLM.</li>
-              <li>Use the quick index to jump to Web, Excel, or PowerPoint as needed.</li>
-              <li>Download the case files before the session starts.</li>
-              <li>Run the first prompt as written, then ask the room to improve it.</li>
-              <li>End every lab with one pilot idea and one guardrail.</li>
+              <li>Start with Setup and Important Notes so participants are ready before the hands-on parts begin.</li>
+              <li>Use the Index or floating Index button to jump between sections quickly during facilitation.</li>
+              <li>Open only the cards you need for the moment so the room stays focused.</li>
+              <li>Use the copy button on prompts and the download links for supporting files.</li>
+              <li>Close each exercise by asking for one insight, one pilot idea, and one guardrail.</li>
             </ul>
           </div>
           <div className="panel-card accent">
-            <h3>Session goal</h3>
+            <h3>Goal</h3>
             <p>
-              Move the room from everyday prompting into higher-value workflows: decision support, stakeholder simulation,
-              data interpretation, and executive communication.
+              Move leaders from basic AI usage into stronger judgment, better prompting, sharper evaluation, and more
+              ambitious workflow and operating-model thinking.
             </p>
           </div>
         </aside>
@@ -968,9 +984,8 @@ function App() {
             </p>
           </div>
           <div className="notes-grid">
-            <article className="note-card prompt-note">
+            <CollapsibleCard className="note-card prompt-note" title="Anatomy of a Good Prompt in Claude AI">
               <div className="note-card-header">
-                <h3>Anatomy of a Good Prompt in Claude AI</h3>
                 <p>Strong prompts are clear, grounded, and specific about the job to be done.</p>
               </div>
               <div className="anatomy-grid">
@@ -984,11 +999,10 @@ function App() {
               <div className="note-callout">
                 Formula: <strong>Role + Goal + Context + Output Format + Constraints</strong>
               </div>
-            </article>
+            </CollapsibleCard>
 
-            <article className="note-card model-note">
+            <CollapsibleCard className="note-card model-note" title="When to use which Models">
               <div className="note-card-header">
-                <h3>When to use which Models</h3>
                 <p>Match the model to the effort, the risk, and the need for grounded output.</p>
               </div>
               <div className="model-list">
@@ -999,11 +1013,10 @@ function App() {
                   </div>
                 ))}
               </div>
-            </article>
+            </CollapsibleCard>
 
-            <article className="note-card eval-note">
+            <CollapsibleCard className="note-card eval-note" title="How to Critically Evaluate AI Responses">
               <div className="note-card-header">
-                <h3>How to Critically Evaluate AI Responses</h3>
                 <p>Do not treat the first answer as the final answer. Use AI to review, challenge, and strengthen itself.</p>
               </div>
               <div className="model-list">
@@ -1020,7 +1033,7 @@ function App() {
                   Claude shared evaluation example
                 </a>
               </div>
-            </article>
+            </CollapsibleCard>
           </div>
         </section>
 
@@ -1045,9 +1058,9 @@ function App() {
             <p className="eyebrow">Vibe Coding</p>
             <h2>Build-first problems for participants</h2>
             <p className="lead">
-              Use these as live build challenges in tools like Claude, Bolt, v0, or any AI-assisted app builder. They
-              work well for mixed senior audiences because the problems are familiar, but the outputs require product
-              thinking rather than just prompting.
+              Use these as live build challenges in tools like Lovable.dev, Claude, Bolt, v0, or any AI-assisted app
+              builder. They work well for mixed senior audiences because the problems are familiar, but the outputs
+              require product thinking rather than just prompting.
             </p>
           </div>
           <div className="scenario-list">
@@ -1105,8 +1118,7 @@ function App() {
               and strategically sound rather than just superficially polished.
             </p>
           </div>
-          <article className="scenario-card">
-            <h3>{finalExercise.title}</h3>
+          <CollapsibleCard className="scenario-card" title={finalExercise.title} subtitle={finalExercise.outcome}>
             <p className="scenario-meta">
               <strong>Outcome:</strong> {finalExercise.outcome}
             </p>
@@ -1122,11 +1134,11 @@ function App() {
                   ))}
                 </ol>
               </div>
-              <PromptPanel title="Evaluator prompt" prompt={finalExercise.prompt} showPrompts={showPrompts} buttonLabel="evaluator prompt" />
+              <PromptPanel title="" prompt={finalExercise.prompt} showPrompts={showPrompts} buttonLabel="evaluator prompt" />
             </div>
             <h4>Downloads</h4>
             <DownloadList downloads={finalExercise.downloads} />
-          </article>
+          </CollapsibleCard>
         </section>
 
         <section className="section">
