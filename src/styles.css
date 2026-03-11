@@ -530,6 +530,21 @@ pre {
   background: #fffef9;
 }
 
+.artifact-feature-card {
+  padding: 20px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: linear-gradient(180deg, #fff9ef, #eefbf8);
+  margin-bottom: 18px;
+}
+
+.artifact-feature-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
+  gap: 18px;
+}
+
 .note-card {
   padding: 20px;
   border: 3px solid var(--line);
@@ -647,7 +662,8 @@ pre {
   .library-grid,
   .setup-grid,
   .notes-grid,
-  .anatomy-grid {
+  .anatomy-grid,
+  .artifact-feature-body {
     grid-template-columns: 1fr;
   }
 

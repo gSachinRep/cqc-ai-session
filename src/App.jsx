@@ -267,6 +267,20 @@ const vibeCodingProblems = [
   }
 ]
 
+const claudeArtifactCard = {
+  title: 'Claude Artifacts - Building Apps and Prototypes',
+  summary:
+    'Use Claude Artifacts when you want Claude to generate something interactive and visible, not just a text response. This is useful for lightweight apps, internal tools, calculators, demos, mockups, and fast prototypes.',
+  points: [
+    'Artifacts are useful when participants need a tangible output they can interact with during the session.',
+    'They work well for small apps, internal utilities, workflows, forms, explainers, calculators, and rough product prototypes.',
+    'They are best for fast iteration: ask Claude to generate, inspect, refine, and improve the artifact in short cycles.',
+    'Use Claude Artifacts for quick prototype thinking; use tools like Lovable.dev, Bolt, or v0 when teams want a fuller product build path.'
+  ],
+  prompt:
+    'Build this as a Claude Artifact, not just as plain text. Create a lightweight interactive prototype with a clear user flow, sensible labels, and an interface that demonstrates the core value of the idea. Keep it practical and easy to iterate during a workshop.'
+}
+
 const workbookSections = [
   {
     id: 'claude-core',
@@ -1079,6 +1093,21 @@ function App() {
               require product thinking rather than just prompting.
             </p>
           </div>
+          <CollapsibleCard className="artifact-feature-card" title={claudeArtifactCard.title} subtitle={claudeArtifactCard.summary}>
+            <div className="artifact-feature-body">
+              <div>
+                <h4>When to use Claude Artifacts</h4>
+                <ol>
+                  {claudeArtifactCard.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ol>
+              </div>
+              <div>
+                <PromptPanel title="" prompt={claudeArtifactCard.prompt} showPrompts={showPrompts} buttonLabel="artifact prompt" />
+              </div>
+            </div>
+          </CollapsibleCard>
           <div className="scenario-list">
             {vibeCodingProblems.map((item) => (
               <VibeCodingCard key={item.title} item={item} showPrompts={showPrompts} />
