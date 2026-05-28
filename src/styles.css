@@ -43,6 +43,18 @@ a {
   padding: 28px 0 48px;
 }
 
+.page-shell::after {
+  content: "(C) NIIT Limited - AFLS";
+  display: block;
+  margin-top: 28px;
+  padding: 8px 6px 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
 .floating-index {
   position: fixed;
   right: 18px;
@@ -75,6 +87,49 @@ a {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.tip-card p::before {
+  content: "💡 ";
+}
+
+.quiz-card {
+  padding: 18px;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.quiz-option {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quiz-option.is-correct {
+  background: #dff6e8;
+  border-color: #21734a;
+}
+
+.quiz-option.is-wrong {
+  background: #ffe1dc;
+  border-color: #a63a1f;
+}
+
+.quiz-feedback {
+  margin-top: 12px;
+  font-weight: 800;
+  color: var(--muted);
 }
 
 .collapsible-card {
@@ -229,6 +284,15 @@ p {
   padding: 20px;
 }
 
+.hero-index-card {
+  margin-top: 18px;
+}
+
+.hero-index-nav {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
 .panel-card.accent {
   background: linear-gradient(160deg, var(--teal), #daf6ef);
 }
@@ -291,17 +355,6 @@ main {
   margin-bottom: 20px;
 }
 
-.quick-nav {
-  position: sticky;
-  top: 14px;
-  z-index: 5;
-  padding: 14px;
-  border: 2px solid var(--line);
-  border-radius: 20px;
-  background: rgba(255, 253, 247, 0.94);
-  backdrop-filter: blur(8px);
-}
-
 .surface-link {
   padding: 10px 14px;
   border: 2px solid var(--line);
@@ -311,16 +364,21 @@ main {
   font-weight: 800;
 }
 
-.index-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.index-group-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  margin-bottom: 18px;
 }
 
-.toggle-btn {
-  cursor: pointer;
+.index-group-card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.grouped-index-nav {
+  gap: 10px;
+  margin-bottom: 0;
 }
 
 .toolbar-note {
@@ -661,6 +719,7 @@ pre {
   .tips-grid,
   .library-grid,
   .setup-grid,
+  .index-group-grid,
   .notes-grid,
   .anatomy-grid,
   .artifact-feature-body {

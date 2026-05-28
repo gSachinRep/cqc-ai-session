@@ -28,19 +28,200 @@ const sessionFlow = [
   }
 ]
 
-const quickNav = [
-  { label: 'Index', href: '#index' },
-  { label: 'Setup', href: '#setup' },
-  { label: 'Important notes', href: '#important-notes' },
-  { label: 'Vibe coding', href: '#vibe-coding' },
-  { label: 'Claude Web', href: '#web' },
-  { label: 'Claude Excel', href: '#excel' },
-  { label: 'Claude PowerPoint', href: '#powerpoint' },
-  { label: 'Workbook picks', href: '#workbook-picks' },
-  { label: 'Claude core', href: '#claude-core' },
-  { label: 'NotebookLM', href: '#notebooklm' },
-  { label: 'Evaluate Your CQC Project', href: '#project-evaluation' },
-  { label: 'Downloads', href: '#downloads' }
+const indexGroups = [
+  {
+    title: 'Start Here',
+    icon: '🚀',
+    note: 'Use these first to get the room ready and aligned.',
+    accent: '#2563eb',
+    bg: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+    links: [
+      { label: 'Setup', href: '#setup' },
+      { label: 'Important Notes', href: '#important-notes' }
+    ]
+  },
+  {
+    title: 'Role-Based Playbooks',
+    icon: '🏢',
+    note: 'Function-specific prompts and workflows for Finance, HR, Marketing, Sales, and CX.',
+    accent: '#0d9488',
+    bg: 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)',
+    links: [
+      { label: 'Claude for Finance', href: '/playbooks/finance.html' },
+      { label: 'Claude for HR', href: '/playbooks/hr.html' },
+      { label: 'Claude for Marketing', href: '/playbooks/marketing.html' },
+      { label: 'Claude for Sales', href: '/playbooks/sales.html' },
+      { label: 'Claude for Customer Experience', href: '/playbooks/cx.html' }
+    ]
+  },
+  {
+    title: 'Claude Tools & Tutorials',
+    icon: '🤖',
+    note: 'Claude surfaces and working patterns across web, desktop, and productivity tools.',
+    accent: '#d97706',
+    bg: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+    links: [
+      { label: 'Claude Core', href: '/tools/core.html' },
+      { label: 'Claude Cowork', href: '/tools/cowork.html' },
+      { label: 'Claude Code', href: '/tools/code.html' },
+      { label: 'Claude Skills', href: '/tools/skills.html' },
+      { label: 'Claude Slack', href: '/tools/slack.html' },
+      { label: 'Claude Web', href: '/tools/web.html' },
+      { label: 'Claude Excel', href: '/tools/excel.html' },
+      { label: 'Claude PowerPoint', href: '/tools/powerpoint.html' }
+    ]
+  },
+  {
+    title: 'NotebookLM',
+    icon: '📔',
+    note: 'Research briefs, board prep, and competitor synthesis using source-grounded notebooks.',
+    accent: '#7c3aed',
+    bg: 'linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%)',
+    links: [
+      { label: 'NotebookLM Overview', href: '/notebooklm/' }
+    ]
+  },
+  {
+    title: 'n8n Automation',
+    icon: '⚡',
+    note: 'AI-infused workflow automation: triggers, branching, routing, sub-workflows, and practical assignments.',
+    accent: '#ea580c',
+    bg: 'linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%)',
+    links: [
+      { label: 'n8n Overview', href: '/n8n/' },
+      { label: 'Deep Dive Program', href: '/n8n/deep-dive.html' },
+      { label: 'Practice Exercises', href: '/n8n/practice-exercises.html' }
+    ]
+  },
+  {
+    title: 'Vibe Coding',
+    icon: '🎨',
+    note: 'Hands-on creative coding challenge using Claude as your pair programmer and creative co-pilot.',
+    accent: '#c026d3',
+    bg: 'linear-gradient(135deg, #fdf4ff 0%, #f5d0fe 100%)',
+    links: [
+      { label: 'Vibe Coding Challenge', href: '/vibe-coding/' }
+    ]
+  },
+  {
+    title: 'CCA Certification',
+    icon: '🎓',
+    note: 'Study guide and domain-by-domain practice for the Claude Certified Architect Foundations exam.',
+    accent: '#4f46e5',
+    bg: 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)',
+    links: [
+      { label: 'CCA Exam Overview', href: '/cca/' },
+      { label: 'Domain 1 — Agentic Architecture', href: '/cca/domain-1.html' },
+      { label: 'Domain 2 — Tool Design & MCP', href: '/cca/domain-2.html' },
+      { label: 'Domain 3 — Claude Code Config', href: '/cca/domain-3.html' },
+      { label: 'Domain 4 — Prompt Engineering', href: '/cca/domain-4.html' },
+      { label: 'Domain 5 — Context Management', href: '/cca/domain-5.html' },
+      { label: 'Sample Questions', href: '/cca/sample-questions.html' }
+    ]
+  },
+  {
+    title: 'Exercises & Resources',
+    icon: '📝',
+    note: 'Project evaluation, progress tracking, and downloads for closing the session.',
+    accent: '#e11d48',
+    bg: 'linear-gradient(135deg, #fff1f2 0%, #fecdd3 100%)',
+    links: [
+      { label: 'Evaluate Your CQC Project', href: '#project-evaluation' },
+      { label: 'Progress Tracker', href: '#progress-tracker' },
+      { label: 'Downloads', href: '#downloads' }
+    ]
+  },
+  {
+    title: 'Anthropic Blog',
+    icon: '📰',
+    note: 'Key articles from the Anthropic team on building with Claude.',
+    accent: '#475569',
+    bg: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+    links: [
+      { label: 'Building agents with the Claude Agent SDK', href: '/blog/agent-sdk.html' }
+    ]
+  }
+]
+
+const tutorialPages = [
+  {
+    title: 'Claude Core',
+    href: '/tools/core.html',
+    detail: 'Direct Claude workflows for strategic emails, strategy pressure tests, and 30-day sprint planning.'
+  },
+  {
+    title: 'Claude Cowork',
+    href: '/tools/cowork.html',
+    detail: 'How to use Cowork for multi-step work, coordination, and deeper working patterns.'
+  },
+  {
+    title: 'Claude Code',
+    href: '/tools/code.html',
+    detail: 'From getting started to advanced use cases, subagents, MCP, and shipping with Claude Code.'
+  },
+  {
+    title: 'Claude Skills',
+    href: '/tools/skills.html',
+    detail: 'Understand Claude Skills, how to configure them, and where they fit into repeatable workflows.'
+  },
+  {
+    title: 'Claude Slack',
+    href: '/tools/slack.html',
+    detail: 'Use Claude inside Slack for thread summaries, updates, meeting prep, and Slack connector workflows.'
+  },
+  {
+    title: 'Claude for Chrome',
+    href: '/tools/web.html',
+    detail: 'Browser-native work across tabs, actions, background tasks, scheduled workflows, and safety.'
+  },
+  {
+    title: 'Claude for Excel',
+    href: '/tools/excel.html',
+    detail: 'Variance analysis, pipeline diagnostics, workforce reviews, and workbook-driven commentary.'
+  },
+  {
+    title: 'Claude for PowerPoint',
+    href: '/tools/powerpoint.html',
+    detail: 'Use Claude to improve storylines, executive decks, client presentations, and change communication.'
+  },
+  {
+    title: 'NotebookLM',
+    href: '/notebooklm/',
+    detail: 'Research briefs, board prep, and competitor synthesis using source-grounded notebook workflows.'
+  },
+  {
+    title: 'n8n Automation',
+    href: '/n8n/',
+    detail: 'AI-infused workflow automation with triggers, branching, routing, approval steps, and practical business scenarios.'
+  }
+]
+
+const rolePlaybooks = [
+  {
+    title: 'Claude for Finance',
+    href: '/playbooks/finance.html',
+    detail: 'FP&A, reporting, decision support, policies and controls, board communication.'
+  },
+  {
+    title: 'Claude for HR',
+    href: '/playbooks/hr.html',
+    detail: 'Hiring, performance, communication, policies, workforce insights, L&D.'
+  },
+  {
+    title: 'Claude for Marketing',
+    href: '/playbooks/marketing.html',
+    detail: 'Messaging, campaigns, content, research, performance insights, CRM.'
+  },
+  {
+    title: 'Claude for Sales',
+    href: '/playbooks/sales.html',
+    detail: 'Account prep, discovery, proposals, objections, pipeline reviews, leadership support.'
+  },
+  {
+    title: 'Claude for Customer Experience',
+    href: '/playbooks/cx.html',
+    detail: 'Support responses, escalations, knowledge, journey design, retention, voice of customer.'
+  }
 ]
 
 const promptAnatomy = [
@@ -209,393 +390,6 @@ const optionalSetupGuides = [
   }
 ]
 
-const vibeCodingProblems = [
-  {
-    color: 'orange',
-    title: 'The Meeting Overload Analyzer',
-    brief:
-      "Our teams spend hours in meetings with no visibility into whether they're productive. I want a tool where I can paste a meeting transcript and get a quick summary — decisions made, action items, owners, and a 'was this meeting necessary?' score.",
-    whyItWorks:
-      'Universal pain point. No domain expertise needed. Tests summarization plus structured-output thinking.',
-    buildFocus: ['Transcript input', 'Structured summary output', 'Decision and owner extraction', 'Meeting-value scoring'],
-    starterPrompt:
-      'Build a simple internal tool called Meeting Overload Analyzer. It should accept a pasted meeting transcript and return: summary, decisions made, action items, owners, risks, and a 1-10 score for whether the meeting was necessary. Use a clean, executive-friendly interface.'
-  },
-  {
-    color: 'blue',
-    title: 'The New Joiner Buddy Bot',
-    brief:
-      'Onboarding is inconsistent across our service lines. Build a simple chatbot that answers common Day 1–30 questions for new employees — policies, who to contact, what tools to use — based on information I feed it.',
-    whyItWorks:
-      'HR and operations relevance for every leader. Forces participants to think about knowledge structuring and prompt design for Q&A flows.',
-    buildFocus: ['FAQ knowledge source', 'Chat interface', 'Contact escalation logic', 'Source-grounded answers'],
-    starterPrompt:
-      'Build a lightweight onboarding chatbot for new joiners. It should answer Day 1 to Day 30 questions using company information I provide, suggest who to contact when unsure, and clearly separate confirmed answers from items that need HR or manager confirmation.'
-  },
-  {
-    color: 'green',
-    title: 'The Client Proposal Accelerator',
-    brief:
-      "Our teams waste time formatting the same types of proposals. I want a tool where I enter a client name, industry, and the problem we're solving — and it generates a first-draft proposal outline with sections, suggested messaging, and a few differentiators.",
-    whyItWorks:
-      'Directly relevant to business development and service line heads. High perceived ROI.',
-    buildFocus: ['Simple form inputs', 'Proposal outline generation', 'Messaging suggestions', 'Differentiator prompts'],
-    starterPrompt:
-      'Build a proposal drafting assistant. Inputs: client name, industry, business problem, and service line. Output: a first-draft proposal outline with executive summary, problem statement, approach, timeline, assumptions, and three differentiators.'
-  },
-  {
-    color: 'violet',
-    title: 'The Team Pulse Dashboard',
-    brief:
-      'I want a lightweight weekly check-in tool — team members answer 3 quick questions about workload, blockers, and morale, and I get a simple visual dashboard showing trends across my team over time.',
-    whyItWorks:
-      'Leadership-relevant, data plus UI challenge, and it pushes thinking about form inputs, storage, and visualization.',
-    buildFocus: ['Weekly check-in form', 'Trend storage', 'Simple charts or status cards', 'Leader dashboard summary'],
-    starterPrompt:
-      'Build a weekly team pulse tool. Team members should submit answers on workload, blockers, and morale. Leaders should see trends over time, current hotspots, and a simple dashboard with clear visuals and minimal setup.'
-  },
-  {
-    color: 'red',
-    title: 'The Competitive Intel Snapshot',
-    brief:
-      "Before a client meeting, I want to quickly generate a one-pager on a competitor — what they offer, their likely pricing positioning, and 3 talking points on why we're different — just by entering a company name and our service line.",
-    whyItWorks:
-      'Strategic and exciting for senior leaders. Pushes participants to think about grounding AI outputs with context and constraints.',
-    buildFocus: ['Competitor input form', 'One-page output', 'Differentiation talking points', 'Grounding and disclaimer section'],
-    starterPrompt:
-      'Build a competitor snapshot generator. Inputs: competitor name and our service line. Output: overview of likely offerings, estimated pricing position, risks in relying on incomplete information, and three talking points on how we are different.'
-  }
-]
-
-const claudeArtifactCard = {
-  title: 'Claude Artifacts - Building Apps and Prototypes',
-  summary:
-    'Use Claude Artifacts when you want Claude to generate something interactive and visible, not just a text response. This is useful for lightweight apps, internal tools, calculators, demos, mockups, and fast prototypes.',
-  points: [
-    'Artifacts are useful when participants need a tangible output they can interact with during the session.',
-    'They work well for small apps, internal utilities, workflows, forms, explainers, calculators, and rough product prototypes.',
-    'They are best for fast iteration: ask Claude to generate, inspect, refine, and improve the artifact in short cycles.',
-    'Use Claude Artifacts for quick prototype thinking; use tools like Lovable.dev, Bolt, or v0 when teams want a fuller product build path.'
-  ],
-  prompt:
-    'Build this as a Claude Artifact, not just as plain text. Create a lightweight interactive prototype with a clear user flow, sensible labels, and an interface that demonstrates the core value of the idea. Keep it practical and easy to iterate during a workshop.'
-}
-
-const workbookSections = [
-  {
-    id: 'claude-core',
-    eyebrow: 'Workbook Pick · Claude',
-    title: 'Claude core workflows for senior leaders',
-    summary:
-      'Adapted from the workbook for fast live use: communication, strategy critique, and post-session execution planning.',
-    scenarios: [
-      {
-        title: 'Strategic Email',
-        outcome: 'Draft a crisp internal message with stronger context, tone control, and optional subject lines.',
-        whenToUse: 'Use for leadership announcements, program launches, operating updates, or change communication.',
-        steps: [
-          'Open Claude and start a fresh conversation.',
-          'Set context first: your role, audience, purpose, tone, and constraints.',
-          'Paste the exercise brief and ask for one primary version, two alternatives, and five subject lines.',
-          'Ask Claude to tighten it further for brevity or to adapt it for a different stakeholder group.'
-        ],
-        prompt:
-          'I am a senior leader. Draft a 150-word internal email to my leadership team announcing a new AI adoption initiative across three departments starting next month. Tone: confident but collaborative. Include two alternative versions and five subject line options.',
-        downloads: [
-          { label: 'Email brief', href: '/downloads/claude-strategic-email-brief.txt' }
-        ]
-      },
-      {
-        title: 'Strategy Pressure Test',
-        outcome: 'Use Claude as a skeptic to expose assumptions, stakeholder objections, and second-order risks.',
-        whenToUse: 'Use before strategy reviews, steering committee meetings, launch approvals, or investment discussions.',
-        steps: [
-          'Paste your plan or use the sample initiative brief.',
-          'Ask Claude to behave like a skeptical leadership team reviewing the proposal.',
-          'Request the top three risks, weakest assumption, and the questions each stakeholder would ask.',
-          'Finish by asking for a revised, more resilient version of the plan.'
-        ],
-        prompt:
-          'Challenge this plan like a skeptical executive team. Give me the top three risks, the most likely wrong assumption, the questions a CFO, CHRO, and operations head will ask, and a revised version of the plan that is more defensible.',
-        downloads: [
-          { label: 'Strategy brief', href: '/downloads/claude-strategy-pressure-test.txt' }
-        ]
-      },
-      {
-        title: '30-Day AI Sprint Plan',
-        outcome: 'Convert workshop energy into a concrete team rollout plan with weekly focus, ownership, and follow-through.',
-        whenToUse: 'Use right after the session with each function head or leadership team.',
-        steps: [
-          'Describe your role, team, and the type of work your team does.',
-          'Ask Claude for a four-week sprint with one weekly focus, one visible output, and one review checkpoint.',
-          'Request an internal kickoff email and a weekly check-in template.',
-          'Close by asking for common pitfalls and how to prevent low adoption.'
-        ],
-        prompt:
-          'I am a functional leader who just completed an AI immersion session. Build a 30-day AI sprint plan for my team with weekly themes, specific use cases to test, one kickoff email, one weekly review template, and the main adoption pitfalls to watch for.',
-        downloads: [
-          { label: 'Sprint planning brief', href: '/downloads/claude-ai-sprint-context.txt' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'notebooklm',
-    eyebrow: 'Workbook Pick · NotebookLM',
-    title: 'NotebookLM workflows for research, board prep, and market synthesis',
-    summary:
-      'These exercises keep leaders grounded in source material and are strong for research-heavy decisions where citation quality matters.',
-    scenarios: [
-      {
-        title: 'Instant Research Brief',
-        outcome: 'Turn a small source pack into an executive briefing with source-backed insights.',
-        whenToUse: 'Use for emerging topic briefings, trend scans, policy research, or leadership prep.',
-        steps: [
-          'Create a new notebook and upload the three source files.',
-          'Ask NotebookLM for five insights with source references and a 300-word executive brief.',
-          'Ask a second question: what is still unclear or unsupported by the sources.',
-          'Optionally generate the audio overview for commute listening.'
-        ],
-        prompt:
-          'Using only these sources, produce a 300-word executive brief with five actionable insights, why each matters, and citations. Then list the open questions the sources do not resolve.',
-        downloads: [
-          { label: 'Industry report excerpt', href: '/downloads/notebooklm-industry-report.txt' },
-          { label: 'Analyst note', href: '/downloads/notebooklm-analyst-note.txt' },
-          { label: 'Internal strategy note', href: '/downloads/notebooklm-internal-strategy.txt' }
-        ]
-      },
-      {
-        title: 'Board Pack Accelerator',
-        outcome: 'Compress source-heavy board material into a briefing note, questions to expect, and a sharper narrative.',
-        whenToUse: 'Use for CEO office, CFO, strategy, and business heads preparing for board or audit committee reviews.',
-        steps: [
-          'Upload the board memo, performance snapshot, and risk note into one notebook.',
-          'Ask NotebookLM for the story the board is likely to care about most.',
-          'Request five board questions, weak spots in the material, and a short pre-read summary.',
-          'Use that output to refine the actual board pack.'
-        ],
-        prompt:
-          'Review these sources as if you were preparing a board pre-read. Summarize the core story, highlight weak spots or unsupported claims, and generate five questions the board is likely to ask.',
-        downloads: [
-          { label: 'Board memo', href: '/downloads/notebooklm-board-memo.txt' },
-          { label: 'Performance snapshot', href: '/downloads/notebooklm-board-performance.csv' },
-          { label: 'Risk note', href: '/downloads/notebooklm-board-risk-note.txt' }
-        ]
-      },
-      {
-        title: 'Competitive Intelligence',
-        outcome: 'Use a curated source set to compare competitor moves, extract implications, and identify response options.',
-        whenToUse: 'Use for strategy, business development, pricing, product, and transformation teams.',
-        steps: [
-          'Upload the competitor announcements and internal response note.',
-          'Ask NotebookLM to compare the competitors on moves, claims, and likely implications.',
-          'Request a response matrix: ignore, monitor, counter, or match.',
-          'Finish by asking what additional evidence leadership should collect before acting.'
-        ],
-        prompt:
-          'Using these sources only, compare competitor moves, identify the most material implications for our business, and recommend what we should monitor, counter, or ignore.',
-        downloads: [
-          { label: 'Competitor A update', href: '/downloads/notebooklm-competitor-a.txt' },
-          { label: 'Competitor B update', href: '/downloads/notebooklm-competitor-b.txt' },
-          { label: 'Internal response note', href: '/downloads/notebooklm-competitive-response.txt' }
-        ]
-      }
-    ]
-  }
-]
-
-const surfaces = [
-  {
-    id: 'web',
-    eyebrow: 'Claude For Web',
-    title: 'Use Claude inside browser work, not outside it',
-    summary:
-      'Best for fragmented context: multiple tabs, live documents, CRM pages, policy portals, dashboards, and customer threads.',
-    scenarios: [
-      {
-        title: 'Executive Brief From Open Tabs',
-        outcome: 'Convert scattered browser context into one leadership-ready decision brief.',
-        whenToUse: 'Use when leaders are comparing reports, dashboards, customer notes, and public information at once.',
-        steps: [
-          'Open the case files in separate browser tabs or upload them into your browser workflow.',
-          'Ask Claude to separate facts from inference before making a recommendation.',
-          'Request a one-page brief with risks, options, and next actions.',
-          'Red-team the first answer and tighten the final memo.'
-        ],
-        prompt:
-          'Using the information across these open pages, create a one-page leadership brief with confirmed facts, likely implications, top risks, and the next three actions. Separate evidence from inference.',
-        downloads: [
-          { label: 'Market update', href: '/downloads/web-market-update.txt' },
-          { label: 'Customer escalation', href: '/downloads/web-customer-escalation.txt' },
-          { label: 'Ops dashboard snapshot', href: '/downloads/web-ops-dashboard.csv' },
-          { label: 'Facilitator guide', href: '/downloads/web-scenario-brief.txt' }
-        ]
-      },
-      {
-        title: 'Policy and Contract Review',
-        outcome: 'Use Claude to extract obligations, risks, and negotiation points from browser-based documents.',
-        whenToUse: 'Useful for legal, finance, HR, sales, and service lines reviewing policy changes or contract variations.',
-        steps: [
-          'Open the policy note and contract summary together.',
-          'Ask Claude to identify obligations, deadlines, penalties, and ambiguities.',
-          'Have it compare internal policy intent with external commitment.',
-          'End with a decision note: accept, revise, or escalate.'
-        ],
-        prompt:
-          'Review these documents together. Extract obligations, deadlines, commercial risks, unclear clauses, and items that require legal or leadership escalation. Finish with a negotiation checklist.',
-        downloads: [
-          { label: 'Policy note', href: '/downloads/web-policy-change.txt' },
-          { label: 'Contract summary', href: '/downloads/web-contract-summary.txt' }
-        ]
-      },
-      {
-        title: 'Account and Meeting Preparation',
-        outcome: 'Build a sharp prep pack from CRM notes, prior emails, performance signals, and public web pages.',
-        whenToUse: 'Strong fit for sales heads, business heads, account directors, and CEO office teams.',
-        steps: [
-          'Open the account background, customer notes, and quarterly metrics.',
-          'Ask Claude to identify stakeholder priorities, open issues, and opportunity angles.',
-          'Generate a meeting brief, talking points, and likely objections.',
-          'Finish with follow-up actions for the account owner.'
-        ],
-        prompt:
-          'Create a meeting-prep pack from these materials. Include account context, stakeholder priorities, risk signals, opportunity areas, recommended talking points, and likely objections.',
-        downloads: [
-          { label: 'Account background', href: '/downloads/web-account-background.txt' },
-          { label: 'Quarterly account metrics', href: '/downloads/web-account-metrics.csv' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'excel',
-    eyebrow: 'Claude For Excel',
-    title: 'Use Claude to interrogate the numbers, not just read them',
-    summary:
-      'Best for dense workbooks: financial variance, sales pipeline patterns, workforce analysis, and executive review of spreadsheet-heavy decisions.',
-    scenarios: [
-      {
-        title: 'Finance Variance Analysis',
-        outcome: 'Explain what changed in revenue, margin, and operating costs without manually tracing every line item.',
-        whenToUse: 'Ideal for CFO teams, BU heads, and CEOs reviewing monthly business performance.',
-        steps: [
-          'Download the variance workbook inputs and open them in Excel.',
-          'Ask Claude to identify unusual movements, likely drivers, and questions leadership should ask.',
-          'Follow with a prompt asking for management commentary in board language.',
-          'Use a second pass to surface weak assumptions or hidden risks.'
-        ],
-        prompt:
-          'Review this workbook as a CFO-style analyst. Identify the five most important movements, their likely drivers, possible risks, and the questions leadership should ask before acting.',
-        downloads: [
-          { label: 'Finance variance data', href: '/downloads/excel-finance-variance.csv' },
-          { label: 'Cost driver notes', href: '/downloads/excel-finance-notes.txt' }
-        ]
-      },
-      {
-        title: 'Sales Pipeline Diagnostics',
-        outcome: 'Spot stage leakage, long-cycle deals, regional issues, and rep-level intervention needs.',
-        whenToUse: 'Useful for sales leadership, business heads, and revenue operations reviews.',
-        steps: [
-          'Load the pipeline sheet and ask Claude for stage-wise conversion, ageing, and stuck opportunities.',
-          'Ask for intervention recommendations by region, segment, and deal owner.',
-          'Request a short sales review note for leadership.',
-          'Red-team the answer for overfitting or weak evidence.'
-        ],
-        prompt:
-          'Analyze this pipeline sheet and identify the main causes of revenue slippage, conversion leakage, and deal ageing. Recommend actions by team, region, and deal stage.',
-        downloads: [
-          { label: 'Pipeline data', href: '/downloads/excel-sales-pipeline.csv' },
-          { label: 'Win-loss notes', href: '/downloads/excel-win-loss-notes.txt' }
-        ]
-      },
-      {
-        title: 'Workforce and Attrition Review',
-        outcome: 'Use Claude to combine workforce data, attrition patterns, and manager notes into a risk summary.',
-        whenToUse: 'Strong fit for CHROs, HRBPs, and service line leaders during talent reviews.',
-        steps: [
-          'Open the workforce sheet and the manager commentary.',
-          'Ask Claude to identify hotspots by tenure, role, location, and manager.',
-          'Request intervention ideas that separate policy actions from manager coaching actions.',
-          'Finish with a leadership-ready risk note.'
-        ],
-        prompt:
-          'Review this workforce data and identify attrition hotspots, potential drivers, and the top interventions for the next quarter. Separate systemic issues from manager-level issues.',
-        downloads: [
-          { label: 'Workforce data', href: '/downloads/excel-workforce-attrition.csv' },
-          { label: 'Manager notes', href: '/downloads/excel-workforce-notes.txt' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'powerpoint',
-    eyebrow: 'Claude For PowerPoint',
-    title: 'Use Claude to shape narrative, not only slides',
-    summary:
-      'Best for executive communication: turning rough thinking into a clear storyline, improving board readiness, and tightening decision decks.',
-    scenarios: [
-      {
-        title: 'Board Memo to Executive Deck',
-        outcome: 'Turn raw notes and spreadsheet highlights into a concise leadership narrative.',
-        whenToUse: 'Useful for CEO office, CFO reviews, transformation teams, and business unit heads.',
-        steps: [
-          'Download the notes and supporting metrics.',
-          'Ask Claude to propose a six-slide board storyline with slide titles and evidence required.',
-          'Request sharper executive wording and a more defensible recommendation.',
-          'End with expected board questions and weak spots in the deck.'
-        ],
-        prompt:
-          'Act as an executive communications advisor. Convert these raw notes into a six-slide board storyline with slide titles, key message per slide, supporting evidence, and likely questions from the board.',
-        downloads: [
-          { label: 'Board notes', href: '/downloads/ppt-board-notes.txt' },
-          { label: 'Board metrics', href: '/downloads/ppt-board-metrics.csv' }
-        ]
-      },
-      {
-        title: 'Client Presentation Refinement',
-        outcome: 'Make a sales or account deck more differentiated, clearer, and decision-ready.',
-        whenToUse: 'Strong fit for sales heads, service line leaders, consulting teams, and business development.',
-        steps: [
-          'Open the raw pitch notes and case-study inputs.',
-          'Ask Claude to create a stronger storyline and to cut weak or repetitive material.',
-          'Request sharper executive tone, stronger proof points, and likely client objections.',
-          'Use the output to restructure the presentation before final design.'
-        ],
-        prompt:
-          'Review these presentation notes and improve the storyline, differentiation, credibility, and executive tone. Identify what should be cut, what needs proof, and what the client is likely to challenge.',
-        downloads: [
-          { label: 'Pitch notes', href: '/downloads/ppt-client-pitch-notes.txt' },
-          { label: 'Case studies', href: '/downloads/ppt-client-case-studies.txt' }
-        ]
-      },
-      {
-        title: 'Change Communication Deck',
-        outcome: 'Craft a leadership deck for policy shifts, operating model changes, or restructuring.',
-        whenToUse: 'Useful for CHROs, CEOs, transformation leaders, and internal communications teams.',
-        steps: [
-          'Use the change brief and FAQ inputs.',
-          'Ask Claude to create a sequence that balances clarity, empathy, and action.',
-          'Request specific messages for managers, employees, and leadership town halls.',
-          'Finish with a slide-level risk check for ambiguity or resistance.'
-        ],
-        prompt:
-          'Turn these change-management notes into a clear leadership deck outline. Balance rationale, empathy, operating implications, and next steps. Include likely employee questions and manager guidance.',
-        downloads: [
-          { label: 'Change brief', href: '/downloads/ppt-change-brief.txt' },
-          { label: 'Employee FAQ inputs', href: '/downloads/ppt-change-faq.txt' }
-        ]
-      }
-    ]
-  }
-]
-
-const facilitationTips = [
-  'Start with the familiar task first, then show the higher-order version using the same material.',
-  'Keep participants focused on decisions, risks, and next actions rather than on prompt phrasing alone.',
-  'Ask every group to separate confirmed facts from inference before they make recommendations.',
-  'Always include one red-team step so the room sees how to use Claude as a critic, not just a generator.',
-  'Close each lab by asking what should remain fully human-owned.'
-]
 
 const finalExercise = {
   id: 'project-evaluation',
@@ -679,63 +473,6 @@ Provide a short summary including:
 }
 
 const downloadLibrary = [
-  {
-    name: 'Workbook-derived Claude files',
-    files: [
-      '/downloads/claude-strategic-email-brief.txt',
-      '/downloads/claude-strategy-pressure-test.txt',
-      '/downloads/claude-ai-sprint-context.txt'
-    ]
-  },
-  {
-    name: 'Workbook-derived NotebookLM files',
-    files: [
-      '/downloads/notebooklm-industry-report.txt',
-      '/downloads/notebooklm-analyst-note.txt',
-      '/downloads/notebooklm-internal-strategy.txt',
-      '/downloads/notebooklm-board-memo.txt',
-      '/downloads/notebooklm-board-performance.csv',
-      '/downloads/notebooklm-board-risk-note.txt',
-      '/downloads/notebooklm-competitor-a.txt',
-      '/downloads/notebooklm-competitor-b.txt',
-      '/downloads/notebooklm-competitive-response.txt'
-    ]
-  },
-  {
-    name: 'Claude for Web files',
-    files: [
-      '/downloads/web-market-update.txt',
-      '/downloads/web-customer-escalation.txt',
-      '/downloads/web-ops-dashboard.csv',
-      '/downloads/web-scenario-brief.txt',
-      '/downloads/web-policy-change.txt',
-      '/downloads/web-contract-summary.txt',
-      '/downloads/web-account-background.txt',
-      '/downloads/web-account-metrics.csv'
-    ]
-  },
-  {
-    name: 'Claude for Excel files',
-    files: [
-      '/downloads/excel-finance-variance.csv',
-      '/downloads/excel-finance-notes.txt',
-      '/downloads/excel-sales-pipeline.csv',
-      '/downloads/excel-win-loss-notes.txt',
-      '/downloads/excel-workforce-attrition.csv',
-      '/downloads/excel-workforce-notes.txt'
-    ]
-  },
-  {
-    name: 'Claude for PowerPoint files',
-    files: [
-      '/downloads/ppt-board-notes.txt',
-      '/downloads/ppt-board-metrics.csv',
-      '/downloads/ppt-client-pitch-notes.txt',
-      '/downloads/ppt-client-case-studies.txt',
-      '/downloads/ppt-change-brief.txt',
-      '/downloads/ppt-change-faq.txt'
-    ]
-  },
   {
     name: 'Final exercise files',
     files: ['/downloads/project-evaluation-prompt.txt']
@@ -821,74 +558,6 @@ function PromptPanel({ title, prompt, showPrompts, buttonLabel = 'Prompt' }) {
   )
 }
 
-function SurfaceCard({ surface, showPrompts }) {
-  return (
-    <section id={surface.id} className="surface-card">
-      <div className="surface-header">
-        <p className="eyebrow">{surface.eyebrow}</p>
-        <h2>{surface.title}</h2>
-        <p className="lead">{surface.summary}</p>
-      </div>
-      <div className="scenario-list">
-        {surface.scenarios.map((scenario) => (
-          <CollapsibleCard key={scenario.title} className="scenario-card" title={scenario.title} subtitle={scenario.outcome}>
-            <p className="scenario-meta">
-              <strong>Outcome:</strong> {scenario.outcome}
-            </p>
-            <p className="scenario-meta">
-              <strong>When to use:</strong> {scenario.whenToUse}
-            </p>
-            <div className="scenario-columns">
-              <div>
-                <h4>Steps</h4>
-                <ol>
-                  {scenario.steps.map((step) => (
-                    <li key={step}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-              <PromptPanel title="" prompt={scenario.prompt} showPrompts={showPrompts} />
-            </div>
-            <h4>Downloads</h4>
-            <DownloadList downloads={scenario.downloads} />
-          </CollapsibleCard>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function VibeCodingCard({ item, showPrompts }) {
-  return (
-    <CollapsibleCard className={`vibe-card vibe-${item.color}`} title={item.title} subtitle={item.whyItWorks}>
-      <div className="vibe-header">
-        <p className="vibe-brief">{item.brief}</p>
-      </div>
-      <p className="scenario-meta">
-        <strong>Why it works:</strong> {item.whyItWorks}
-      </p>
-      <div className="scenario-columns">
-        <div>
-          <h4>What participants should think through</h4>
-          <ol>
-            {item.buildFocus.map((focus) => (
-              <li key={focus}>{focus}</li>
-            ))}
-          </ol>
-        </div>
-        <div>
-          <PromptPanel
-            title=""
-            prompt={item.starterPrompt}
-            showPrompts={showPrompts}
-            buttonLabel="starter prompt"
-          />
-        </div>
-      </div>
-    </CollapsibleCard>
-  )
-}
-
 function SetupCard({ item }) {
   return (
     <CollapsibleCard className="setup-card" title={item.title}>
@@ -910,7 +579,7 @@ function SetupCard({ item }) {
 }
 
 function App() {
-  const [showPrompts, setShowPrompts] = useState(false)
+  const [showPrompts] = useState(false)
 
   return (
     <div className="page-shell">
@@ -958,19 +627,41 @@ function App() {
         <section id="index" className="section">
           <div className="section-heading">
             <p className="eyebrow">Quick Index</p>
-            <h2>Jump straight to the part you need</h2>
+            <h2>Use a cleaner path through the tutorial</h2>
+            <p className="lead">
+              The home page now groups content by purpose so it is easier to facilitate: start-up items first,
+              role-based playbooks next, then tools, hands-on exercises, and downloads.
+            </p>
           </div>
-          <div className="index-toolbar">
-            <button className="btn toggle-btn" type="button" onClick={() => setShowPrompts((current) => !current)}>
-              {showPrompts ? 'Hide all prompts' : 'Show all prompts'}
-            </button>
-            <p className="toolbar-note">Applies to every prompt block across Claude, NotebookLM, and Vibe Coding.</p>
-          </div>
-          <div className="surface-nav quick-nav">
-            {quickNav.map((item) => (
-              <a key={item.href} className="surface-link" href={item.href}>
-                {item.label}
-              </a>
+          <div className="index-group-grid">
+            {indexGroups.map((group) => (
+              <article
+                key={group.title}
+                className="panel-card index-group-card"
+                style={{
+                  background: group.bg,
+                  borderTop: `4px solid ${group.accent}`,
+                  boxShadow: `0 2px 12px ${group.accent}18`
+                }}
+              >
+                <h3 style={{ color: group.accent, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <span aria-hidden="true">{group.icon}</span>
+                  {group.title}
+                </h3>
+                <p className="toolbar-note">{group.note}</p>
+                <div className="surface-nav grouped-index-nav">
+                  {group.links.map((item) => (
+                    <a
+                      key={item.href}
+                      className="surface-link"
+                      href={item.href}
+                      style={{ borderColor: `${group.accent}55`, color: group.accent }}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -1043,6 +734,16 @@ function App() {
                   </div>
                 ))}
               </div>
+              <div className="note-callout">
+                Recommended tutorial:{' '}
+                <a
+                  href="https://claude.com/resources/tutorials/get-the-most-from-claude-opus-4-6"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Get the most from Claude Opus 4.6
+                </a>
+              </div>
             </CollapsibleCard>
 
             <CollapsibleCard className="note-card eval-note" title="How to Critically Evaluate AI Responses">
@@ -1064,53 +765,87 @@ function App() {
                 </a>
               </div>
             </CollapsibleCard>
+
+            <CollapsibleCard className="note-card prompt-note" title="Which Claude Surface Should I Use?">
+              <div className="note-card-header">
+                <p>Claude shows up in many places. Use this guide to choose the right surface for the job.</p>
+              </div>
+              <div className="model-list">
+                <div className="model-row">
+                  <strong>Claude Core (claude.ai)</strong>
+                  <span>Direct conversation, drafting, critique, strategy review, planning. No files needed. Best for thinking-heavy tasks where the output is text.</span>
+                </div>
+                <div className="model-row">
+                  <strong>Claude Cowork</strong>
+                  <span>File-aware workspace for non-developers. Use when you need Claude to work with a folder, create deliverables, organize files, or produce real outputs like spreadsheets and summaries. Think of it as delegating a project, not asking a question.</span>
+                </div>
+                <div className="model-row">
+                  <strong>Claude Code</strong>
+                  <span>Terminal and editor access for software work. Use when the task involves reading or editing code files, running commands, debugging, testing, or shipping changes to a repository.</span>
+                </div>
+                <div className="model-row">
+                  <strong>Claude for Chrome</strong>
+                  <span>Browser-native synthesis and action. Use when context lives across tabs, dashboards, portals, or CRM pages and you want reading, extraction, or careful browser actions without switching tools.</span>
+                </div>
+                <div className="model-row">
+                  <strong>Claude Skills</strong>
+                  <span>Reusable instruction patterns saved as custom configurations. Use when you want consistent behavior across repeated tasks — same role, same format, same output standard — without re-prompting each time.</span>
+                </div>
+                <div className="model-row">
+                  <strong>Claude in Slack</strong>
+                  <span>In-thread help where the conversation already lives. Use for thread summarization, draft updates, standup prep, and quick assistance without leaving Slack.</span>
+                </div>
+              </div>
+              <div className="note-callout">
+                Quick rule: if the work is a conversation, use Core. If it involves files or a folder, use Cowork. If it involves code or a terminal, use Code. If it involves the browser, use Chrome.
+              </div>
+            </CollapsibleCard>
+
+            <CollapsibleCard className="note-card model-note" title="How Claude Augments Your Work">
+              <div className="note-card-header">
+                <p>AI augmentation means using Claude to reduce first-pass cognitive load — not to delegate decisions. This model applies across every role and surface in this program.</p>
+              </div>
+              <div className="model-list">
+                <div className="model-row">
+                  <strong>What Claude should do</strong>
+                  <span>Draft, summarize, structure, compare, synthesize, and produce first-pass outputs from text-heavy or repetitive inputs. Use it where the work is high-volume, messy, or time-consuming to assemble from scratch.</span>
+                </div>
+                <div className="model-row">
+                  <strong>What teams still own</strong>
+                  <span>Judgment, accountability, relationships, sign-off, fairness, final decisions, and anything that requires lived context, empathy, or authority. Claude does not replace any of these.</span>
+                </div>
+                <div className="model-row">
+                  <strong>The operating shift</strong>
+                  <span>Teams spend less time on first versions and more time reviewing, challenging, coaching, and deciding. The output gets better; the human role becomes more strategic, not smaller.</span>
+                </div>
+              </div>
+              <div className="note-callout">
+                Quick rule: if the task is about producing a first draft, summary, or structured view — that is Claude. If it is about deciding, signing off, or owning the result — that stays human.
+              </div>
+            </CollapsibleCard>
           </div>
         </section>
 
-        <section className="section">
+        <section id="role-playbooks" className="section">
           <div className="section-heading">
-            <p className="eyebrow">Run Of Show</p>
-            <h2>90-minute session structure</h2>
-          </div>
-          <div className="timeline">
-            {sessionFlow.map((item) => (
-              <article key={item.time} className="timeline-card">
-                <p className="timeline-time">{item.time}</p>
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="vibe-coding" className="section">
-          <div className="section-heading">
-            <p className="eyebrow">Vibe Coding</p>
-            <h2>Build-first problems for participants</h2>
+            <p className="eyebrow">Role-Based Playbooks</p>
+            <h2>Function-specific pages for deeper facilitation</h2>
             <p className="lead">
-              Use these as live build challenges in tools like Lovable.dev, Claude, Bolt, v0, or any AI-assisted app
-              builder. They work well for mixed senior audiences because the problems are familiar, but the outputs
-              require product thinking rather than just prompting.
+              These pages are useful when you want the workshop to branch into function-specific exploration rather than
+              staying fully generic. Each page follows the same playbook structure with prompts, workflows, and guardrails.
             </p>
           </div>
-          <CollapsibleCard className="artifact-feature-card" title={claudeArtifactCard.title} subtitle={claudeArtifactCard.summary}>
-            <div className="artifact-feature-body">
-              <div>
-                <h4>When to use Claude Artifacts</h4>
-                <ol>
-                  {claudeArtifactCard.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ol>
-              </div>
-              <div>
-                <PromptPanel title="" prompt={claudeArtifactCard.prompt} showPrompts={showPrompts} buttonLabel="artifact prompt" />
-              </div>
-            </div>
-          </CollapsibleCard>
-          <div className="scenario-list">
-            {vibeCodingProblems.map((item) => (
-              <VibeCodingCard key={item.title} item={item} showPrompts={showPrompts} />
+          <div className="notes-grid">
+            {rolePlaybooks.map((item) => (
+              <article key={item.title} className="note-card model-note">
+                <div className="note-card-header">
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </div>
+                <a className="btn" href={item.href}>
+                  Open page
+                </a>
+              </article>
             ))}
           </div>
         </section>
@@ -1118,38 +853,56 @@ function App() {
         <section id="tutorials" className="section">
           <div className="section-heading">
             <p className="eyebrow">Tutorials</p>
-            <h2>Use cases by Claude surface</h2>
+            <h2>Open the dedicated tutorial pages</h2>
             <p className="lead">
-              Each scenario is designed for seasoned leaders. The materials are generic and cross-functional rather than
-              industry-specific.
+              The detailed cards, prompts, examples, and downloads now live on their own pages so the home page can stay
+              lighter and easier to facilitate.
             </p>
           </div>
-          <div className="surface-nav">
-            {surfaces.map((surface) => (
-              <a key={surface.id} className="surface-link" href={`#${surface.id}`}>
-                {surface.eyebrow}
-              </a>
-            ))}
-          </div>
-          <div className="surface-stack">
-            {surfaces.map((surface) => (
-              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
+          <div className="notes-grid">
+            {tutorialPages.map((item) => (
+              <article key={item.title} className="note-card model-note">
+                <div className="note-card-header">
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </div>
+                <a className="btn" href={item.href}>
+                  Open page
+                </a>
+              </article>
             ))}
           </div>
         </section>
 
-        <section id="workbook-picks" className="section">
+        <section id="progress-tracker" className="section">
           <div className="section-heading">
-            <p className="eyebrow">Workbook Picks</p>
-            <h2>Selected use cases from the session workbook</h2>
+            <p className="eyebrow">Progress Tracker</p>
+            <h2>Track your module progress</h2>
             <p className="lead">
-              These are adapted from the workbook you shared and converted into facilitator-ready labs with sample files
-              and clearer handoff steps.
+              Use this checklist to mark modules as you complete them. Check off each page as you work through it —
+              your progress is saved in this browser session.
             </p>
           </div>
-          <div className="surface-stack">
-            {workbookSections.map((surface) => (
-              <SurfaceCard key={surface.id} surface={surface} showPrompts={showPrompts} />
+          <div className="notes-grid">
+            {[
+              { group: 'Setup', items: ['Required setup complete', 'Optional tools installed'] },
+              { group: 'Role Playbooks', items: ['Claude for Finance', 'Claude for HR', 'Claude for Marketing', 'Claude for Sales', 'Claude for Customer Experience'] },
+              { group: 'Tool Tutorials', items: ['Claude Core', 'Claude Cowork', 'Claude Code', 'Claude Skills', 'Claude Slack', 'Claude for Chrome', 'Claude for Excel', 'Claude for PowerPoint', 'NotebookLM', 'n8n Automation'] },
+              { group: 'Exercises', items: ['Vibe Coding challenge', 'n8n Deep Dive', 'Final project evaluation'] }
+            ].map((section) => (
+              <article key={section.group} className="note-card model-note">
+                <div className="note-card-header">
+                  <h3>{section.group}</h3>
+                </div>
+                <ul style={{ listStyle: 'none', padding: '0', margin: '0' }}>
+                  {section.items.map((item) => (
+                    <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                      <input type="checkbox" id={`progress-${item.replace(/\s/g, '-')}`} style={{ accentColor: '#dd5c36', width: '1rem', height: '1rem', flexShrink: 0 }} />
+                      <label htmlFor={`progress-${item.replace(/\s/g, '-')}`} style={{ cursor: 'pointer', fontSize: '0.9rem' }}>{item}</label>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </section>
@@ -1184,20 +937,6 @@ function App() {
             <h4>Downloads</h4>
             <DownloadList downloads={finalExercise.downloads} />
           </CollapsibleCard>
-        </section>
-
-        <section className="section">
-          <div className="section-heading">
-            <p className="eyebrow">Facilitation Notes</p>
-            <h2>What to emphasize in the room</h2>
-          </div>
-          <div className="tips-grid">
-            {facilitationTips.map((tip) => (
-              <article key={tip} className="tip-card">
-                <p>{tip}</p>
-              </article>
-            ))}
-          </div>
         </section>
 
         <section id="downloads" className="section">
